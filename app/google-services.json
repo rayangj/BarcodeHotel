@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "278903199646",
+    "firebase_url": "https://barcode-hotel.firebaseio.com",
+    "project_id": "barcode-hotel",
+    "storage_bucket": "barcode-hotel.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:278903199646:android:6eda7a7aa921df1f54e88f",
+        "android_client_info": {
+          "package_name": "com.example.barcodehotel"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "278903199646-asvame7376pqmoh08jbog6lo51lrc7cg.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.barcodehotel",
+            "certificate_hash": "8c24c850d7ae970a2209cf9c0eca4e3b81e66e5d"
+          }
+        },
+        {
+          "client_id": "278903199646-inhi9pkskq6ugimq89n3knt4gee8m9b6.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAXQVjwvkSN6ACOfr3-4F9IqAaUcILt7u8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "278903199646-inhi9pkskq6ugimq89n3knt4gee8m9b6.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:layout_margin="10dp">
 
     <LinearLayout
@@ -15,7 +15,6 @@
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:background="#dadada">
-
         </ImageView>
 
         <LinearLayout
@@ -33,7 +32,6 @@
                 android:textSize="25sp"
                 android:textColor="#000000"
                 android:textStyle="bold">
-
             </TextView>
 
             <TextView
@@ -45,12 +43,7 @@
                 android:textColor="#000000"
                 android:textStyle="italic"
                 android:layout_marginTop="10dp">
-
             </TextView>
         </LinearLayout>
-
-
     </LinearLayout>
-
-
 </LinearLayout>

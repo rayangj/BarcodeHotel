@@ -22,7 +22,7 @@ class Tambah_Makan : AppCompatActivity() {
 
         Nama = findViewById<EditText>(R.id.txt_makanan)
         Harga = findViewById<EditText>(R.id.txt_harga)
-        ref = FirebaseDatabase.getInstance().getReference()
+        ref = FirebaseDatabase.getInstance().getReference("Makanan")
 
         btn_tambah.setOnClickListener {
             savedata()
@@ -36,11 +36,12 @@ class Tambah_Makan : AppCompatActivity() {
         val user = FoodModel(getNama,getHarga)
         //val idMakanan = ref.push().key.toString()
 
-        ref.child("Makanan").push().setValue(user).addOnCompleteListener {
-            Toast.makeText(this, "Successs",Toast.LENGTH_SHORT).show()
-            val Intent = Intent (this, MainActivity::class.java)
-            startActivity(Intent)
-            finish()
+        ref.push().setValue(user).addOnCompleteListener {
+            Toast.makeText(this@Tambah_Makan, "Successs",Toast.LENGTH_SHORT).show()
         }
+
+        val Intent = Intent (this, MainActivity::class.java)
+        startActivity(Intent)
+        finish()
     }
 }

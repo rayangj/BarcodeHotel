@@ -44,22 +44,28 @@ class Food_Fragment : Fragment() {
 
     private fun getData(){
        Toast.makeText(getContext(), "Mohon tunggu sebentar...", Toast.LENGTH_SHORT).show()
-        ref = FirebaseDatabase.getInstance().getReference()
-        ref.child("Makanan").addValueEventListener(object : ValueEventListener{
+        ref = FirebaseDatabase.getInstance().getReference("Makanan")
+        ref.addValueEventListener(object : ValueEventListener{
            override fun onCancelled(p0: DatabaseError) {
                Toast.makeText(getContext(), "Database Erorr njir", Toast.LENGTH_SHORT).show()
            }
 
            override fun onDataChange(p0: DataSnapshot) {
-               listView= java.util.ArrayList<FoodModel>()
-               for (dataSnapshot in p0.children ) {
-                   val teman = dataSnapshot.getValue(FoodModel::class.java)
-                   //teman?.setKey(dataSnapshot.key)
-                   listView.add(teman!!)
-               }
-               rv_View.layoutManager = LinearLayoutManager(context)
-               rv_View.adapter = FoodAdapter(context!!,listView)
-               Toast.makeText(getContext(), "Data Berhasil Dimuat",Toast.LENGTH_LONG).show()
+//               val getNamaWali = p0.child("nama").getValue().toString()
+//               val getNamaSantri = p0.child("harga").getValue().toString()
+//
+//               show_nama.text = getNamaWali
+//               show_harga.text = getNamaSantri
+
+//               listView= java.util.ArrayList<FoodModel>()
+//               for (dataSnapshot in p0.children ) {
+//                   val teman = dataSnapshot.getValue(FoodModel::class.java)
+//                   //teman?.setKey(dataSnapshot.key)
+//                   listView.add(teman!!)
+//               }
+//               rv_View.layoutManager = LinearLayoutManager(context)
+//               rv_View.adapter = FoodAdapter(context!!,listView)
+//               Toast.makeText(getContext(), "Data Berhasil Dimuat",Toast.LENGTH_LONG).show()
            }
 
        })

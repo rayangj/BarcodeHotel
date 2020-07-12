@@ -1,5 +1,6 @@
 package com.example.barcodehotel.Fragment
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -8,6 +9,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.barcodehotel.Adapter.FoodAdapter
+import com.example.barcodehotel.KeranjangActivity
 import com.example.barcodehotel.Model.FoodModel
 
 import com.example.barcodehotel.R
@@ -24,6 +26,7 @@ class Food_Fragment : Fragment() {
     lateinit var ref : DatabaseReference
     lateinit var listView: ArrayList<FoodModel>
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
     }
@@ -38,7 +41,12 @@ class Food_Fragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        ref = FirebaseDatabase.getInstance().getReference("Makanan")
 
+        btn_lihat_keranjng.setOnClickListener {
+            val intent = Intent(context, KeranjangActivity::class.java)
+            startActivity(intent)
+        }
         getData()
     }
 
@@ -52,9 +60,14 @@ class Food_Fragment : Fragment() {
 
            override fun onDataChange(p0: DataSnapshot) {
 
-               listView= java.util.ArrayList<FoodModel>()
+
+              listView= java.util.ArrayList<FoodModel>()
                for (dataSnapshot in p0.children ) {
+//                   val key = dataSnapshot.getRef().toString()
+//                  btn_lihat_keranjng.setText("$key\n")
+
                    val teman = dataSnapshot.getValue(FoodModel::class.java)
+                   //val key = dataSnapshot.getKey()
                    //teman?.setKey(dataSnapshot.key)
                    listView.add(teman!!)
                }

@@ -68,7 +68,7 @@ class Food_Fragment : Fragment() {
 
                    val teman = dataSnapshot.getValue(FoodModel::class.java)
                    //val key = dataSnapshot.getKey()
-                   //teman?.setKey(dataSnapshot.key)
+                   //teman?.key(dataSnapshot.key)
                    listView.add(teman!!)
                }
                rv_View.layoutManager = LinearLayoutManager(context)

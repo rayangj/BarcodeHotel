@@ -12,6 +12,7 @@
         android:layout_marginBottom="10dp">
 
         <ImageView
+            android:id="@+id/show_gmb"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:background="#dadada">
@@ -43,6 +44,19 @@
                 android:textColor="#000000"
                 android:textStyle="italic"
                 android:layout_marginTop="7dp">
+            </TextView>
+            <TextView
+                android:id="@+id/gone_id"
+                android:visibility="gone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+            </TextView>
+
+            <TextView
+                android:id="@+id/gone_gambar"
+                android:visibility="gone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
             </TextView>
 
         </LinearLayout>

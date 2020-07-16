@@ -12,6 +12,7 @@
         android:layout_marginBottom="10dp">
 
         <ImageView
+            android:id="@+id/show_gambar"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:background="#dadada">
@@ -34,16 +35,62 @@
                 android:textStyle="bold">
             </TextView>
 
-            <TextView
-                android:id="@+id/keranjang_harga"
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Harga Makanan"
-                android:textSize="12sp"
-                android:textColor="#000000"
-                android:textStyle="italic"
+                android:orientation="horizontal"
                 android:layout_marginTop="7dp">
-            </TextView>
+
+                <TextView
+                    android:id="@+id/keranjang_harga"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Harga Makanan"
+                    android:textSize="12sp"
+                    android:textColor="#000000"
+                    android:textStyle="italic">
+                </TextView>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="|"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:textSize="12sp"
+                    android:textColor="#000000"
+                    android:textStyle="italic">
+                </TextView>
+                <TextView
+                    android:id="@+id/jumlah_item"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="jumlah item"
+                    android:textSize="12sp"
+                    android:textColor="#186FB3"
+                    android:textStyle="italic">
+                </TextView>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=" item"
+                    android:textSize="12sp"
+                    android:textColor="#186FB3"
+                    android:textStyle="italic">
+                </TextView>
+                <TextView
+                    android:id="@+id/gone_id"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone">
+                </TextView>
+                <TextView
+                    android:id="@+id/gone_gambar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone">
+                </TextView>
+            </LinearLayout>
+
 
         </LinearLayout>
         <LinearLayout
@@ -52,12 +99,12 @@
             android:orientation="vertical"
             android:layout_gravity="center_vertical">
             <Button
-                android:id="@+id/btn_hapus_dari_keranjang"
+                android:id="@+id/btn_edit"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="end"
                 android:layout_marginRight="5dp"
-                android:text="Hapus" />
+                android:text="Edit" />
         </LinearLayout>
 
     </LinearLayout>

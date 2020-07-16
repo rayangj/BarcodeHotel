@@ -23,6 +23,9 @@
         android:background="@drawable/btn_rounded"
         android:padding="15dp"
         android:text="Lihat Keranjang"
-        android:textColor="#ffffff"/>
+        android:drawablePadding="7dp"
+        android:drawableLeft="@drawable/ic_cart"
+        android:textColor="#ffffff"
+        android:fontFamily="@font/montserrat_medium"/>
 
 </FrameLayout>

@@ -1,5 +1,6 @@
 package com.example.barcodehotel
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
@@ -8,6 +9,7 @@ import com.example.barcodehotel.Adapter.KeranjangAdapter
 import com.example.barcodehotel.Model.KeranjangModel
 import com.google.firebase.database.*
 import kotlinx.android.synthetic.main.activity_keranjang.*
+import kotlinx.android.synthetic.main.fragment_food.*
 
 class KeranjangActivity : AppCompatActivity() {
 
@@ -17,6 +19,12 @@ class KeranjangActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_keranjang)
+        title = "Keranjang"
+
+        btn_pesan.setOnClickListener {
+            val intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)
+        }
 
         getData()
     }

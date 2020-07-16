@@ -6,13 +6,25 @@
     android:layout_height="match_parent"
     tools:context=".KeranjangActivity">
 
-    <androidx.recyclerview.widget.RecyclerView
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/rv_View_keranjang"
-        android:layout_margin="10dp"
-        tools:listitem="@layout/keranjang_items"
-        />
+        android:layout_height="match_parent">
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/rv_View_keranjang"
+            android:layout_margin="10dp"
+            tools:listitem="@layout/keranjang_items" />
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="5dp"
+            android:layout_margin="5dp"
+            android:elevation="0dp"
+            app:cardElevation="0dp"
+            android:layout_below="@+id/rv_View_keranjang">
+        </androidx.cardview.widget.CardView>
+    </RelativeLayout>
     <Button
         android:id="@+id/btn_pesan"
         android:layout_width="wrap_content"
@@ -22,5 +34,8 @@
         android:text="Pesan Sekarang"
         android:textColor="#ffffff"
         android:background="@drawable/btn_rounded"
-        android:padding="15dp"/>
+        android:padding="15dp"
+        android:drawablePadding="7dp"
+        android:drawableLeft="@drawable/ic_order"
+        android:fontFamily="@font/montserrat_medium"/>
 </FrameLayout>

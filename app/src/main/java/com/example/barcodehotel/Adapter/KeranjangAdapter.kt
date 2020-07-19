@@ -98,6 +98,7 @@ class KeranjangAdapter(private val context: Context, private val list: ArrayList
             gone_id.text = list.id
             Glide.with(itemView.context).load(list.gambar).into(itemView.show_gambar)
 
+
         }
     }
 

@@ -16,6 +16,8 @@ import com.example.barcodehotel.Model.KeranjangModel
 import com.example.barcodehotel.R
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.storage.FirebaseStorage
+import com.google.firebase.storage.StorageReference
 import kotlinx.android.extensions.LayoutContainer
 import kotlinx.android.synthetic.main.keranjang_items.*
 import kotlinx.android.synthetic.main.keranjang_items.view.*
@@ -25,6 +27,7 @@ class KeranjangAdapter(private val context: Context, private val list: ArrayList
 
     lateinit var edt_jumlah : EditText
     lateinit var ref : DatabaseReference
+    lateinit var storageRef: StorageReference
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = ViewHolder(
         LayoutInflater.from(context).inflate(R.layout.keranjang_items, parent, false)
@@ -37,12 +40,6 @@ class KeranjangAdapter(private val context: Context, private val list: ArrayList
         holder.bindItem(list.get(position))
         ref = FirebaseDatabase.getInstance().getReference()
 
-
-
-//        val nama2 = holder.keranjang_nama.text.toString()
-//        val harga2 = holder.keranjang_harga.text.toString()
-//        val gambar = holder.gone_gambar.text.toString()
-
         holder.btn_edit.setOnClickListener {
             val inflate_view = LayoutInflater.from(context).inflate(R.layout.dialog_activity, null)
             val edt_jumlah = inflate_view.findViewById<EditText>(R.id.txt_ji)
@@ -54,14 +51,12 @@ class KeranjangAdapter(private val context: Context, private val list: ArrayList
 
             val idmkn = holder.gone_id.text.toString()
             val title_bjor = holder.keranjang_nama.text.toString()
-            //val new_jumlah = edt_jumlah.text.toString()
 
             val alertDialog = AlertDialog.Builder(context)
             alertDialog.setTitle(title_bjor)
             alertDialog.setView(inflate_view)
             alertDialog.setCancelable(true)
 
-            //val user = KeranjangModel(idmkn,nama2,harga2,jumlah,gambar)
             val dialog = alertDialog.create()
             dialog.show()
 
@@ -71,17 +66,22 @@ class KeranjangAdapter(private val context: Context, private val list: ArrayList
                     Toast.makeText(context, "kolom tidak boleh kosong" , Toast.LENGTH_SHORT).show()
                 }
                 else if(new_jumlah == "0"){
-                    Toast.makeText(context, "harus lebih dari 0" , Toast.LENGTH_SHORT).show()
+                    Toast.makeText(context, "isi item minimal 1" , Toast.LENGTH_SHORT).show()
                 }
                 else{
                     ref.child("Kamar").child("01").child("Keranjang").child(idmkn).child("jumlah").setValue(new_jumlah).addOnCompleteListener {}
                     dialog.cancel()
-                    // Toast.makeText(context, "Ditambahkan ke Keranjang" , Toast.LENGTH_SHORT).show()
-
                 }
-
             }
-
+            btn_hapus.setOnClickListener {
+//                val g_gambar = holder.gone_gambar.text.toString()
+//                storageRef = FirebaseStorage.getInstance().getReference("Gambar")
+//                storageRef.child(g_gambar).delete().addOnCompleteListener {
+                    ref.child("Kamar").child("01").child("Keranjang").child(idmkn).removeValue().addOnCompleteListener {}
+                    dialog.cancel()
+                    Toast.makeText(context, "dihapus dari keranjang" , Toast.LENGTH_SHORT).show()
+              //  }
+            }
         }
     }
     class ViewHolder(override val containerView: View):

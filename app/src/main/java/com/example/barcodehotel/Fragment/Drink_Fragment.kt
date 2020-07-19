@@ -8,7 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 
 import com.example.barcodehotel.R
-import com.example.barcodehotel.Tambah_Makan
+import com.example.barcodehotel.Admin.Tambah_Makan
 import kotlinx.android.synthetic.main.fragment_drink.*
 
 /**
@@ -17,8 +17,7 @@ import kotlinx.android.synthetic.main.fragment_drink.*
 class Drink_Fragment : Fragment() {
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_drink, container, false) }

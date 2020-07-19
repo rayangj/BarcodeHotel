@@ -6,8 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:layout_margin="10dp"
-    tools:context=".Admin.Tambah_Makan">
-
+    tools:context=".Admin.EditItem">
 
     <TextView
         android:layout_width="match_parent"
@@ -74,27 +73,10 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Kategori"
-        android:textSize="20sp"
-        android:textColor="#000000"
-        android:layout_marginBottom="10dp">
-
-    </TextView>
-    <Spinner
-        android:entries="@array/kategori"
-        android:id="@+id/kat"
-        android:layout_width="200dp"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="10dp"/>
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
         android:text="Gambar"
         android:textSize="20sp"
         android:textColor="#000000"
-        android:layout_marginBottom="10dp">
-
-    </TextView>
+        android:layout_marginBottom="10dp"/>
     <ImageView
         android:id="@+id/image_view"
         android:layout_width="100dp"
@@ -108,7 +90,7 @@
         android:text="Upload Gambar"
         android:layout_marginBottom="20dp"/>
     <Button
-        android:id="@+id/btn_tambah"
+        android:id="@+id/btn_edit_item"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Tambah">

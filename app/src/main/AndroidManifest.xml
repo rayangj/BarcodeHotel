@@ -2,8 +2,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.barcodehotel">
 
-    <uses-permission android:name="android.permission.INTERNET"/>
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -11,9 +12,14 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".KeranjangActivity"></activity>
-        <activity android:name=".Tambah_Makan"></activity>
-        <activity android:name=".MainActivity">
+        <activity android:name=".Admin.EditItem"></activity>
+        <activity android:name=".Admin.ManageDataActivity" />
+        <activity android:name=".Admin.AdminLogin" />
+        <activity android:name=".Admin.AdminMainActivity"></activity>
+
+        <activity android:name=".KeranjangActivity" />
+        <activity android:name=".Admin.Tambah_Makan" />
+        <activity android:name=".MainActivity" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

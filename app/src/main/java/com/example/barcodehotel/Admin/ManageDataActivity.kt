@@ -49,10 +49,15 @@ class ManageDataActivity : AppCompatActivity() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when(item!!.itemId){
-            R.id.menu_tambahItem -> startActivity(Intent(this@ManageDataActivity, Tambah_Makan::class.java))
-            R.id.menu_logOut -> startActivity(Intent(this@ManageDataActivity, AdminMainActivity::class.java))
+            R.id.menu_tambahItem -> {
+                startActivity(Intent(this@ManageDataActivity, Tambah_Makan::class.java))
+            }
+            R.id.menu_logOut -> {
+                startActivity(Intent(this@ManageDataActivity, AdminMainActivity::class.java))
+                finish()
+            }
         }
-        finish()
+
         return super.onOptionsItemSelected(item)
     }
 }

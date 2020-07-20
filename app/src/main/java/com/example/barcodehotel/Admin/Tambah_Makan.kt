@@ -56,7 +56,7 @@ class Tambah_Makan : AppCompatActivity() {
         }
     }
     private fun savedata() {
-
+        btn_tambah.isEnabled = false
         val getKat: String = kat.selectedItem.toString()
         val getStok: Int = set_stok.checkedRadioButtonId
         val getNama: String = txt_makanan?.getText().toString()
@@ -75,16 +75,19 @@ class Tambah_Makan : AppCompatActivity() {
                     Toast.makeText(this@Tambah_Makan, "Wajib Pilih gambar", Toast.LENGTH_SHORT).show()
                 }
                 else{
-                    val Intent = Intent (this, ManageDataActivity::class.java)
-                    startActivity(Intent)
-                    finish()
+
                    Toast.makeText(this@Tambah_Makan, "Mengupload...", Toast.LENGTH_SHORT).show()
                     storageRef.putFile(imgPath!!).addOnSuccessListener {
                         storageRef.downloadUrl.addOnSuccessListener {
                             val user = FoodModel(idmkn, getNama, getHarga, stok, getKat, it.toString())
                             ref.child(getKat).child(idmkn).setValue(user).addOnCompleteListener {}
-                        }
+
+                         }
+                        val Intent = Intent (this, ManageDataActivity::class.java)
+                        startActivity(Intent)
+                        finish()
                     }
+
                     .addOnFailureListener {
                         Toast.makeText(this@Tambah_Makan, it.message, Toast.LENGTH_SHORT).show()
                     }

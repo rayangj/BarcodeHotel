@@ -43,16 +43,19 @@ class AdminFoodAdapter (private val context: Context, private val list: ArrayLis
 
         holder.itemView.setOnLongClickListener(View.OnLongClickListener{view ->
             val cek_stok = holder.set_stok.getText().toString()
+            val g_gambar = holder.gone_gambar.text.toString()
+            val idmkn = holder.gone_id.text.toString()
+            val kat = holder.gone_kat.text.toString()
+            ref = FirebaseDatabase.getInstance().getReference()
+            storageRef = FirebaseStorage.getInstance().getReference("Gambar")
 
-            if(cek_stok == "Tersedia"){
-                cs = "Habis"
-            }
-            else{
-                cs = "Tersedia"
-            }
+            if(cek_stok == "Tersedia"){ cs = "Habis" }
+            else{ cs = "Tersedia" }
+
             val action = arrayOf("Edit", "Delete", "Set $cs")
             val alert = AlertDialog.Builder(view.context)
             alert.setCancelable(true)
+
             alert.setItems(action){ dialog, which ->
                 when(which){
                     0 ->{
@@ -70,20 +73,12 @@ class AdminFoodAdapter (private val context: Context, private val list: ArrayLis
                         context.startActivity(pindah)
                     }
                     1 ->{
-                        val g_gambar = holder.gone_gambar.text.toString()
-                        val idmkn = holder.gone_id.text.toString()
-                        val kat = holder.gone_kat.text.toString()
-                        ref = FirebaseDatabase.getInstance().getReference()
-                        storageRef = FirebaseStorage.getInstance().getReference("Gambar")
                         storageRef.child(g_gambar).delete().addOnCompleteListener {
                             ref.child(kat).child(idmkn).removeValue().addOnCompleteListener {}
                         }
                     }
                     2 ->{
-                        val idmkn = holder.gone_id.text.toString()
-                        val kat = holder.gone_kat.text.toString()
-                        ref = FirebaseDatabase.getInstance().getReference()
-                        ref.child(kat).child(idmkn).child("stok").setValue(cs).addOnCompleteListener {}
+                         ref.child(kat).child(idmkn).child("stok").setValue(cs).addOnCompleteListener {}
                     }
                 }
             }

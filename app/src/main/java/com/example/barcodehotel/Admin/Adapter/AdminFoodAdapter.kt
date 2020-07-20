@@ -25,8 +25,10 @@ import kotlinx.android.synthetic.main.manage_item.view.*
 
 class AdminFoodAdapter (private val context: Context, private val list: ArrayList<FoodModel>)
     : RecyclerView.Adapter<AdminFoodAdapter.ViewHolder>(){
+
     lateinit var ref : DatabaseReference
     lateinit var storageRef: StorageReference
+    lateinit var cs: String
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = ViewHolder (
         LayoutInflater.from(context).inflate(R.layout.manage_item, parent, false)
@@ -40,7 +42,15 @@ class AdminFoodAdapter (private val context: Context, private val list: ArrayLis
         holder.bindItem(list.get(position))
 
         holder.itemView.setOnLongClickListener(View.OnLongClickListener{view ->
-            val action = arrayOf("Edit", "Delete")
+            val cek_stok = holder.set_stok.getText().toString()
+
+            if(cek_stok == "Tersedia"){
+                cs = "Habis"
+            }
+            else{
+                cs = "Tersedia"
+            }
+            val action = arrayOf("Edit", "Delete", "Set $cs")
             val alert = AlertDialog.Builder(view.context)
             alert.setCancelable(true)
             alert.setItems(action){ dialog, which ->
@@ -58,28 +68,27 @@ class AdminFoodAdapter (private val context: Context, private val list: ArrayLis
 
                         pindah.putExtras(bundle)
                         context.startActivity(pindah)
-
-                        holder.containerView.setOnClickListener {
-                            ref = FirebaseDatabase.getInstance().getReference()
-                            val show_child = ref.getKey().toString()
-                            Toast.makeText(context, show_child, Toast.LENGTH_SHORT).show()
-                        }
                     }
                     1 ->{
-                        val idmkn = holder.gone_id.text.toString()
                         val g_gambar = holder.gone_gambar.text.toString()
+                        val idmkn = holder.gone_id.text.toString()
                         val kat = holder.gone_kat.text.toString()
-                        ref = FirebaseDatabase.getInstance().getReference(kat)
+                        ref = FirebaseDatabase.getInstance().getReference()
                         storageRef = FirebaseStorage.getInstance().getReference("Gambar")
                         storageRef.child(g_gambar).delete().addOnCompleteListener {
-                            ref.child(idmkn).removeValue().addOnCompleteListener {}
+                            ref.child(kat).child(idmkn).removeValue().addOnCompleteListener {}
                         }
                     }
+                    2 ->{
+                        val idmkn = holder.gone_id.text.toString()
+                        val kat = holder.gone_kat.text.toString()
+                        ref = FirebaseDatabase.getInstance().getReference()
+                        ref.child(kat).child(idmkn).child("stok").setValue(cs).addOnCompleteListener {}
+                    }
                 }
-
             }
-            val dialog = alert.create()
-            dialog.show()
+            val dialog2 = alert.create()
+            dialog2.show()
             true
         })
     }

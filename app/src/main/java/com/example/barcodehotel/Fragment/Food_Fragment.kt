@@ -43,37 +43,23 @@ class Food_Fragment : Fragment() {
 
         ref = FirebaseDatabase.getInstance().getReference("Makanan")
 
-        btn_lihat_keranjng.setOnClickListener {
-            val intent = Intent(context, KeranjangActivity::class.java)
-            startActivity(intent)
-        }
         getData()
     }
 
     private fun getData(){
-       Toast.makeText(getContext(), "Mohon tunggu sebentar...", Toast.LENGTH_SHORT).show()
         ref = FirebaseDatabase.getInstance().getReference("Makanan")
         ref.addValueEventListener(object : ValueEventListener{
            override fun onCancelled(p0: DatabaseError) {
                Toast.makeText(getContext(), "Database Erorr njir", Toast.LENGTH_SHORT).show()
            }
-
            override fun onDataChange(p0: DataSnapshot) {
-
-
               listView= java.util.ArrayList<FoodModel>()
                for (dataSnapshot in p0.children ) {
-//                   val key = dataSnapshot.getRef().toString()
-//                  btn_lihat_keranjng.setText("$key\n")
-
                    val teman = dataSnapshot.getValue(FoodModel::class.java)
-                   //val key = dataSnapshot.getKey()
-                   //teman?.key(dataSnapshot.key)
                    listView.add(teman!!)
                }
                rv_View.layoutManager = LinearLayoutManager(context)
                rv_View.adapter = FoodAdapter(context!!,listView)
-               Toast.makeText(getContext(), "Data Berhasil Dimuat",Toast.LENGTH_LONG).show()
            }
 
        })

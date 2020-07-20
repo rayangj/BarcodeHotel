@@ -13,19 +13,4 @@
         android:layout_margin="10dp"
         tools:listitem="@layout/food_items"
         />
-
-    <Button
-        android:id="@+id/btn_lihat_keranjng"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center|bottom"
-        android:layout_marginBottom="20dp"
-        android:background="@drawable/btn_rounded"
-        android:padding="15dp"
-        android:text="Lihat Keranjang"
-        android:drawablePadding="7dp"
-        android:drawableLeft="@drawable/ic_cart"
-        android:textColor="#ffffff"
-        android:fontFamily="@font/montserrat_medium"/>
-
 </FrameLayout>

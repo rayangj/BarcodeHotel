@@ -26,6 +26,12 @@ class Tambah_Makan : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_tambah_makan)
 
+        supportActionBar?.title = "Tambah Item"
+        supportActionBar?.elevation = 0.0f
+
+        storageRef = FirebaseStorage.getInstance().getReference("Gambar")
+        ref = FirebaseDatabase.getInstance().getReference()
+
         kat = findViewById(R.id.kat)
 
         tersedia.isChecked = true
@@ -50,14 +56,12 @@ class Tambah_Makan : AppCompatActivity() {
         }
     }
     private fun savedata() {
-        storageRef = FirebaseStorage.getInstance().getReference("Gambar")
-
 
         val getKat: String = kat.selectedItem.toString()
         val getStok: Int = set_stok.checkedRadioButtonId
         val getNama: String = txt_makanan?.getText().toString()
         val getHarga: String = txt_harga?.getText().toString()
-        ref = FirebaseDatabase.getInstance().getReference()
+
         val idmkn = ref.push().key.toString()
 //
         val radio: RadioButton = findViewById(getStok)
@@ -71,19 +75,14 @@ class Tambah_Makan : AppCompatActivity() {
                     Toast.makeText(this@Tambah_Makan, "Wajib Pilih gambar", Toast.LENGTH_SHORT).show()
                 }
                 else{
+                    val Intent = Intent (this, ManageDataActivity::class.java)
+                    startActivity(Intent)
+                    finish()
                    Toast.makeText(this@Tambah_Makan, "Mengupload...", Toast.LENGTH_SHORT).show()
                     storageRef.putFile(imgPath!!).addOnSuccessListener {
                         storageRef.downloadUrl.addOnSuccessListener {
                             val user = FoodModel(idmkn, getNama, getHarga, stok, getKat, it.toString())
-
-                            ref.child(getKat).child(idmkn).setValue(user).addOnCompleteListener {
-                                val Intent = Intent (this, ManageDataActivity::class.java)
-                                startActivity(Intent)
-                                finish()
-                            }
-                        }
-                        .addOnFailureListener {
-                            Toast.makeText(this@Tambah_Makan, it.message, Toast.LENGTH_SHORT).show()
+                            ref.child(getKat).child(idmkn).setValue(user).addOnCompleteListener {}
                         }
                     }
                     .addOnFailureListener {

@@ -13,10 +13,40 @@
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:background="@color/colorPrimary"
-        app:tabTextColor="@android:color/white"/>
-    <androidx.viewpager.widget.ViewPager
-        android:id="@+id/viewPager"
+        app:tabTextColor="@android:color/white"
+        app:tabIndicatorColor="#ffffff"/>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent">
+
+        <androidx.viewpager.widget.ViewPager
+            android:id="@+id/viewPager"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent">
+
+        </androidx.viewpager.widget.ViewPager>
+
+        <Button
+            android:id="@+id/btn_lihat_keranjng"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center|bottom"
+            android:background="@drawable/btn_rounded"
+            android:drawableLeft="@drawable/ic_cart"
+            android:drawablePadding="7dp"
+            android:fontFamily="@font/montserrat_medium"
+            android:padding="15dp"
+            android:layout_marginBottom="20dp"
+            android:text="Lihat Keranjang"
+            android:textColor="#ffffff"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
 
 </LinearLayout>

@@ -43,7 +43,6 @@ class ManageFoodFragment : Fragment() {
     }
     private fun getData(){
         Toast.makeText(getContext(), "Mengambil data...", Toast.LENGTH_SHORT).show()
-        ref = FirebaseDatabase.getInstance().getReference("Makanan")
         ref.addValueEventListener(object : ValueEventListener {
             override fun onCancelled(p0: DatabaseError) {
                 Toast.makeText(getContext(), "Database Erorr njir", Toast.LENGTH_SHORT).show()

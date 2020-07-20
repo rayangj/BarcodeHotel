@@ -3,12 +3,12 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
-        android:id="@+id/search"
-        android:title="Search"
+        android:id="@+id/history"
+        android:title="History"
         android:icon="@drawable/ic_baseline_history_24"
         app:showAsAction="always"/>
 
     <item
-        android:id="@+id/setting"
-        android:title="Setelan"/>
+        android:id="@+id/cara_pesan"
+        android:title="Cara Pesan"/>
 </menu>

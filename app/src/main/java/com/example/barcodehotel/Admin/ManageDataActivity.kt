@@ -52,7 +52,7 @@ class ManageDataActivity : AppCompatActivity() {
             R.id.menu_tambahItem -> startActivity(Intent(this@ManageDataActivity, Tambah_Makan::class.java))
             R.id.menu_logOut -> startActivity(Intent(this@ManageDataActivity, AdminMainActivity::class.java))
         }
-
+        finish()
         return super.onOptionsItemSelected(item)
     }
 }

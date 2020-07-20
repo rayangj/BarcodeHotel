@@ -6,10 +6,12 @@
     tools:context=".Fragment.Drink_Fragment">
 
     <!-- TODO: Update blank fragment layout -->
-    <Button
-        android:id="@+id/tmb_mkn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Tambah Makanan"/>
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/rv_View"
+        android:layout_margin="10dp"
+        tools:listitem="@layout/food_items"
+        />
 
 </FrameLayout>

@@ -1,12 +1,15 @@
 package com.example.barcodehotel
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
+import android.view.MenuItem
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT
 import androidx.fragment.app.FragmentStatePagerAdapter
+import com.example.barcodehotel.Admin.AdminMainActivity
 import com.example.barcodehotel.Fragment.Drink_Fragment
 import com.example.barcodehotel.Fragment.Food_Fragment
 import kotlinx.android.synthetic.main.activity_main.*
@@ -19,6 +22,11 @@ class MainActivity : AppCompatActivity() {
 
         supportActionBar?.title = "Hotel"
         supportActionBar?.elevation = 0.0f
+
+        btn_lihat_keranjng.setOnClickListener {
+            val intent = Intent(this@MainActivity, KeranjangActivity::class.java)
+            startActivity(intent)
+        }
 
         val adapter = TabAdapter(supportFragmentManager, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT)
         viewPager.adapter = adapter
@@ -42,5 +50,12 @@ class MainActivity : AppCompatActivity() {
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.menu, menu)
         return super.onCreateOptionsMenu(menu)
+    }
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when(item!!.itemId){
+            R.id.cara_pesan -> startActivity(Intent(this@MainActivity, AdminMainActivity::class.java))
+        }
+        finish()
+        return super.onOptionsItemSelected(item)
     }
 }

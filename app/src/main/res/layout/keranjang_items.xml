@@ -84,7 +84,7 @@
                         android:layout_height="wrap_content"
                         android:text="jumlah item"
                         android:textSize="12sp"
-                        android:textColor="#186FB3"
+                        android:textColor="@color/colorPrimary"
                         android:fontFamily="@font/montserrat_regular">
                     </TextView>
                     <TextView
@@ -92,7 +92,7 @@
                         android:layout_height="wrap_content"
                         android:text=" item"
                         android:textSize="12sp"
-                        android:textColor="#186FB3"
+                        android:textColor="@color/colorPrimary"
                         android:fontFamily="@font/montserrat_regular">
                     </TextView>
                     <TextView
@@ -124,7 +124,10 @@
                     android:layout_marginRight="5dp"
                     android:src="@drawable/ic_baseline_edit_24"
                     android:background="@drawable/btn_rounded_small"
-                    android:padding="5dp"/>
+                    android:padding="5dp"
+                    android:foreground="?attr/selectableItemBackground"
+                    android:clickable="true"
+                    />
             </LinearLayout>
         </LinearLayout>
     </androidx.cardview.widget.CardView>

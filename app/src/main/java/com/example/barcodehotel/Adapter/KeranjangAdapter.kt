@@ -74,13 +74,9 @@ class KeranjangAdapter(private val context: Context, private val list: ArrayList
                 }
             }
             btn_hapus.setOnClickListener {
-//                val g_gambar = holder.gone_gambar.text.toString()
-//                storageRef = FirebaseStorage.getInstance().getReference("Gambar")
-//                storageRef.child(g_gambar).delete().addOnCompleteListener {
-                    ref.child("Kamar").child("01").child("Keranjang").child(idmkn).removeValue().addOnCompleteListener {}
-                    dialog.cancel()
-                    Toast.makeText(context, "dihapus dari keranjang" , Toast.LENGTH_SHORT).show()
-              //  }
+                ref.child("Kamar").child("01").child("Keranjang").child(idmkn).removeValue().addOnCompleteListener {}
+                dialog.cancel()
+                Toast.makeText(context, "dihapus dari keranjang" , Toast.LENGTH_SHORT).show()
             }
         }
     }

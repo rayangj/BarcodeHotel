@@ -1,10 +1,12 @@
 package com.example.barcodehotel.Admin
 
+import android.app.Activity
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
@@ -47,10 +49,11 @@ class ManageDataActivity : AppCompatActivity() {
         return super.onCreateOptionsMenu(menu)
     }
 
+
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when(item!!.itemId){
             R.id.menu_tambahItem -> {
-                startActivity(Intent(this@ManageDataActivity, Tambah_Makan::class.java))
+                gotoTamahItem()
             }
             R.id.menu_logOut -> {
                 startActivity(Intent(this@ManageDataActivity, AdminMainActivity::class.java))
@@ -59,5 +62,9 @@ class ManageDataActivity : AppCompatActivity() {
         }
 
         return super.onOptionsItemSelected(item)
+    }
+     private fun gotoTamahItem(){
+        val intent = Intent (this, Tambah_Makan::class.java)
+        startActivity(intent)
     }
 }

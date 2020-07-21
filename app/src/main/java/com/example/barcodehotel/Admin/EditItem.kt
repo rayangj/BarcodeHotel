@@ -91,28 +91,22 @@ class EditItem : AppCompatActivity() {
             else -> {
                 if (imgPath == null) {
                     val user = FoodModel(idmkn, getNama, getHarga, stok, getKat, gmb_old)
-                    Toast.makeText(this@EditItem, "Mengupload...", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this@EditItem, "Mengupload...", Toast.LENGTH_LONG).show()
                     ref.child(getKat).child(idmkn).setValue(user).addOnCompleteListener {
-                        val Intent = Intent(this, ManageDataActivity::class.java)
-                        startActivity(Intent)
                         finish()
                     }
                 }
                 else{
-                    storageRef.putFile(imgPath!!).addOnSuccessListener {
-                        storageRef.downloadUrl.addOnSuccessListener {
+                    finish()
+                    Toast.makeText(this@EditItem, "Mengupload...", Toast.LENGTH_LONG).show()
+                    storageRef.child(idmkn).putFile(imgPath!!).addOnSuccessListener {
+                        storageRef.child(idmkn).downloadUrl.addOnSuccessListener {
                             val user = FoodModel(idmkn, getNama, getHarga, stok, getKat, it.toString())
-
-                            Toast.makeText(this@EditItem, "Mengupload...", Toast.LENGTH_SHORT).show()
                             ref.child(getKat).child(idmkn).setValue(user).addOnCompleteListener {
                                 val g_gambar = bundle!!.getCharSequence("gambar_item").toString()
                                 storageRef = FirebaseStorage.getInstance().getReference("Gambar")
                                 storageRef.child(g_gambar).delete().addOnCompleteListener {}
-
-                                val Intent = Intent(this, ManageDataActivity::class.java)
-                                startActivity(Intent)
-                                finish()
-                            }
+                             }
                         }
                     }
                     .addOnFailureListener {

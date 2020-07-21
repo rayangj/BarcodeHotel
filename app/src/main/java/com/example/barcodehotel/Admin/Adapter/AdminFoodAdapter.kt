@@ -73,7 +73,7 @@ class AdminFoodAdapter (private val context: Context, private val list: ArrayLis
                         context.startActivity(pindah)
                     }
                     1 ->{
-                        storageRef.child(g_gambar).delete().addOnCompleteListener {
+                        storageRef.child(idmkn).child(g_gambar).delete().addOnCompleteListener {
                             ref.child(kat).child(idmkn).removeValue().addOnCompleteListener {}
                         }
                     }

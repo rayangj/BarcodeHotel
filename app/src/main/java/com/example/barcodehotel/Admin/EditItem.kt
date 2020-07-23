@@ -28,6 +28,8 @@ class EditItem : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_edit_item)
 
+        title = bundle!!.getCharSequence("nama_item")
+
         ref = FirebaseDatabase.getInstance().getReference()
 
         bundle = intent.extras
@@ -50,6 +52,7 @@ class EditItem : AppCompatActivity() {
         nama.setText(bundle!!.getCharSequence("nama_item"))
         harga.setText(bundle!!.getCharSequence("harga_item"))
         Glide.with(this).load(bundle!!.getCharSequence("gambar_item")).into(gambar)
+
 
         upload_gambar.setOnClickListener{
            openGallery()

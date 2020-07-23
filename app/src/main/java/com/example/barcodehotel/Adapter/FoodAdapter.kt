@@ -34,25 +34,19 @@ class FoodAdapter(private val context: Context, private val list: ArrayList<Food
         holder.bindItem(list.get(position))
         ref = FirebaseDatabase.getInstance().getReference()
 
-        //val key = ref.child("Makanan").push().getKey()
-        //val idmkn = ref.push().key.toString()
         val idmkn = holder.gone_id.text.toString()
         val nama2 = holder.show_nama.text.toString()
         val harga2 = holder.show_harga.text.toString()
         val gambar = holder.gone_gambar.text.toString()
 
-        val user = KeranjangModel(idmkn,nama2,harga2,"1",gambar)
+
+        val user = KeranjangModel(idmkn,nama2,harga2,"1",harga2,gambar)
 
        holder.btn_tambah_ke_keranjang.setOnClickListener {
             ref.child("Kamar").child("01").child("Keranjang").child(idmkn).setValue(user).addOnCompleteListener {
                 Toast.makeText(context, "Ditambahkan ke Keranjang" , Toast.LENGTH_SHORT).show()
             }
-            //holder.btn_tambah_ke_keranjang.isEnabled = false
-            //Toast.makeText(context, " $key" , Toast.LENGTH_SHORT).show()
         }
-//        holder.containerView.setOnClickListener {
-//            val keyi = holder.key
-//        }
     }
     class ViewHolder(override val containerView: View):
         RecyclerView.ViewHolder(containerView), LayoutContainer {

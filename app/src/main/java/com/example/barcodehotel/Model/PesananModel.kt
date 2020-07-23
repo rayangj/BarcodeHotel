@@ -1,12 +1,14 @@
 package com.example.barcodehotel.Model
 
-class KeranjangModel(
+class PesananModel(
     var id : String,
     var nama : String,
     var harga : String,
     var jumlah : String,
     var total: String,
-    var gambar : String
+    var finalTotal: String,
+    var tanggal: String
+
 ) {
-    constructor() : this("","","","","","")
+    constructor() : this("","","","","","","")
 }

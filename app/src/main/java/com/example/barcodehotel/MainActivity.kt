@@ -53,9 +53,13 @@ class MainActivity : AppCompatActivity() {
     }
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when(item!!.itemId){
-            R.id.cara_pesan -> startActivity(Intent(this@MainActivity, AdminMainActivity::class.java))
+            R.id.history -> {
+                startActivity(Intent(this@MainActivity, HistoryPesananActivity::class.java))
+            }
+            R.id.cara_pesan -> {
+                //startActivity(Intent(this@MainActivity, AdminMainActivity::class.java))
+            }
         }
-        finish()
         return super.onOptionsItemSelected(item)
     }
 }

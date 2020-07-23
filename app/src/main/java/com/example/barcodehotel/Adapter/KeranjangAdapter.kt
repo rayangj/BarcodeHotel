@@ -21,6 +21,7 @@ import com.google.firebase.storage.StorageReference
 import kotlinx.android.extensions.LayoutContainer
 import kotlinx.android.synthetic.main.keranjang_items.*
 import kotlinx.android.synthetic.main.keranjang_items.view.*
+import java.lang.Double
 
 class KeranjangAdapter(private val context: Context, private val list: ArrayList<KeranjangModel>)
     : RecyclerView.Adapter<KeranjangAdapter.ViewHolder>(){
@@ -38,6 +39,7 @@ class KeranjangAdapter(private val context: Context, private val list: ArrayList
     }
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.bindItem(list.get(position))
+
         ref = FirebaseDatabase.getInstance().getReference()
 
         holder.btn_edit.setOnClickListener {
@@ -62,14 +64,24 @@ class KeranjangAdapter(private val context: Context, private val list: ArrayList
 
             btn_edit_jumlah.setOnClickListener {
                 val new_jumlah = edt_jumlah.text.toString()
+                val harga1 = holder.gone_harga.text.toString()
+
+
                 if(new_jumlah == ""){
                     Toast.makeText(context, "kolom tidak boleh kosong" , Toast.LENGTH_SHORT).show()
                 }
                 else if(new_jumlah == "0"){
                     Toast.makeText(context, "isi item minimal 1" , Toast.LENGTH_SHORT).show()
+
                 }
                 else{
+                    val total = harga1.toBigDecimal()
+                    val jml = new_jumlah.toBigDecimal()
+                    val total1 = total * jml
+                    val finalTotal = total1.toString()
+
                     ref.child("Kamar").child("01").child("Keranjang").child(idmkn).child("jumlah").setValue(new_jumlah).addOnCompleteListener {}
+                    ref.child("Kamar").child("01").child("Keranjang").child(idmkn).child("total").setValue(finalTotal).addOnCompleteListener {}
                     dialog.cancel()
                 }
             }
@@ -83,12 +95,9 @@ class KeranjangAdapter(private val context: Context, private val list: ArrayList
     class ViewHolder(override val containerView: View):
         RecyclerView.ViewHolder(containerView), LayoutContainer {
         fun bindItem(list: KeranjangModel){
-            var harga1 = list.harga.toBigDecimal()
-            var jumlah1 = list.jumlah.toBigDecimal()
-            var total1 = harga1 * jumlah1
-
             keranjang_nama.text = list.nama
-            keranjang_harga.text = total1.toString()
+            keranjang_total.text = list.total
+            gone_harga.text = list.harga
             jumlah_item.text = list.jumlah
             gone_gambar.text = list.gambar
             gone_id.text = list.id

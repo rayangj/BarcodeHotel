@@ -11,8 +11,7 @@
         android:layout_height="wrap_content"
         app:cardCornerRadius="5dp"
         android:layout_margin="5dp"
-        android:elevation="0dp"
-        app:cardElevation="0dp">
+        app:cardElevation="5dp">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -60,7 +59,7 @@
                         android:fontFamily="@font/montserrat_regular">
                     </TextView>
                     <TextView
-                        android:id="@+id/keranjang_harga"
+                        android:id="@+id/keranjang_total"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Harga Makanan"
@@ -107,6 +106,12 @@
                         android:layout_height="wrap_content"
                         android:visibility="gone">
                     </TextView>
+                    <TextView
+                        android:id="@+id/gone_harga"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:visibility="gone">
+                    </TextView>
                 </LinearLayout>
 
 
@@ -121,7 +126,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="end"
-                    android:layout_marginRight="5dp"
+                    android:layout_marginRight="10dp"
                     android:src="@drawable/ic_baseline_edit_24"
                     android:background="@drawable/btn_rounded_small"
                     android:padding="5dp"

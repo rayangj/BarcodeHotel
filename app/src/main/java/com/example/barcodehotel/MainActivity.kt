@@ -66,9 +66,9 @@ class MainActivity : AppCompatActivity() {
                 //finish()
             }
             R.id.cara_pesan -> {
-                mAuth.signOut()
-                startActivity(Intent(this@MainActivity, ScanBarcodeActivity::class.java))
-                finish()
+//                mAuth.signOut()
+//                startActivity(Intent(this@MainActivity, ScanBarcodeActivity::class.java))
+//                finish()
             }
         }
         return super.onOptionsItemSelected(item)

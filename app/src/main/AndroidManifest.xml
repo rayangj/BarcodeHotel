@@ -3,6 +3,7 @@
     package="com.example.barcodehotel">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <application
@@ -12,20 +13,25 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".HistoryPesananActivity"></activity>
-        <activity android:name=".Admin.EditItem" />
-        <activity android:name=".Admin.ManageDataActivity" />
-        <activity android:name=".Admin.AdminLogin" />
-        <activity android:name=".Admin.AdminMainActivity"></activity>
-        <activity android:name=".KeranjangActivity" />
-        <activity android:name=".Admin.Tambah_Makan" />
-        <activity android:name=".MainActivity">
+        <activity android:name=".Admin.ShowPesananActivity"></activity>
+        <activity android:name=".BerhasilPesanActivity" />
+        <activity android:name=".ScanBarcodeActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".HistoryPesananActivity" />
+        <activity android:name=".Admin.EditItem" />
+        <activity android:name=".Admin.ManageDataActivity" />
+        <activity android:name=".Admin.AdminLogin" />
+        <activity android:name=".Admin.Tambah_Makan" />
+        <activity android:name=".Admin.AdminMainActivity" >
+
+        </activity>
+        <activity android:name=".KeranjangActivity" />
+        <activity android:name=".MainActivity" />
         <activity android:name=".Fragment.Food_Fragment" />
         <activity android:name=".Fragment.Drink_Fragment" />
     </application>

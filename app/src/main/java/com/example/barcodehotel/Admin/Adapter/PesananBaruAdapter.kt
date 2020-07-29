@@ -1,21 +1,26 @@
-package com.example.barcodehotel.Adapter
+package com.example.barcodehotel.Admin.Adapter
 
 import android.content.Context
-import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.barcodehotel.Model.PesananModel
 import com.example.barcodehotel.R
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
 import kotlinx.android.extensions.LayoutContainer
-import kotlinx.android.synthetic.main.pesanan_items.*
+import kotlinx.android.synthetic.main.pesanan_baru_item.*
+import java.text.SimpleDateFormat
+import java.util.*
+import kotlin.collections.ArrayList
 
-class PesananAdapter (private val context: Context, private val list: ArrayList<PesananModel>)
-    : RecyclerView.Adapter<PesananAdapter.ViewHolder>(){
+class PesananBaruAdapter (private val context: Context, private val list: ArrayList<PesananModel>)
+    : RecyclerView.Adapter<PesananBaruAdapter.ViewHolder>(){
+    lateinit var ref : DatabaseReference
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = ViewHolder (
-        LayoutInflater.from(context).inflate(R.layout.pesanan_items, parent, false)
+        LayoutInflater.from(context).inflate(R.layout.pesanan_baru_item, parent, false)
     )
 
     override fun getItemCount(): Int {
@@ -25,24 +30,24 @@ class PesananAdapter (private val context: Context, private val list: ArrayList<
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.bindItem(list.get(position))
 
+        ref = FirebaseDatabase.getInstance().getReference()
+
+        val idpsn = holder.gone_idpsn.text.toString()
+        val tanggal = SimpleDateFormat("dd MMM yyyy")
+        val cTanggal = tanggal.format(Date())
+
+        holder.btn_tolak.setOnClickListener{
+            ref.child("Pesanan").child(cTanggal).child("Pesan").child(idpsn).child("status").setValue("1").addOnCompleteListener {  }
+        }
+        holder.btn_konfirm.setOnClickListener{
+            ref.child("Pesanan").child(cTanggal).child("Pesan").child(idpsn).child("status").setValue("2").addOnCompleteListener {  }
+        }
     }
     class ViewHolder(override val containerView: View):
         RecyclerView.ViewHolder(containerView), LayoutContainer {
         fun bindItem(list: PesananModel){
-            val st = list.status
-            if(st == "0"){
-                show_status.text = "Menuggu Konfirmasi"
-                show_status.setTextColor(Color.parseColor("#FFEB3B"))
-            }
-            else if(st == "1"){
-                show_status.text = "Ditolak"
-                show_status.setTextColor(Color.parseColor("#BD1A1A"))
-            }
-            else if(st == "2"){
-                show_status.text = "Diterima"
-                show_status.setTextColor(Color.parseColor("#1C9828"))
-            }
-
+            gone_idpsn.text = list.id
+            show_no_kamar.text = list.nokamar
             show_tanggal.text = list.tanggal
             show_jam.text = list.jam
             total.text = "Rp." + list.finalTotal

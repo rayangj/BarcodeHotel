@@ -96,6 +96,25 @@
                     android:background="@drawable/btn_rounded_small"
                     android:padding="5dp"
                     android:foreground="?selectableItemBackgroundBorderless"/>
+                <TextView
+                    android:id="@+id/txt_habis"
+                    android:layout_gravity="end"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Habis"
+                    android:layout_marginRight="10dp"
+                    android:textSize="15sp"
+                    android:fontFamily="@font/montserrat_italic"
+                    android:textStyle="bold"
+                    android:textColor="#BD1A1A"
+                    android:visibility="gone"
+                    />
+                <TextView
+                    android:id="@+id/gone_stok"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone"
+                    />
             </LinearLayout>
 
         </LinearLayout>

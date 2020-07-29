@@ -12,15 +12,23 @@ import androidx.fragment.app.FragmentStatePagerAdapter
 import com.example.barcodehotel.Admin.AdminMainActivity
 import com.example.barcodehotel.Fragment.Drink_Fragment
 import com.example.barcodehotel.Fragment.Food_Fragment
+import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
+
+    private lateinit var mAuth : FirebaseAuth
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        supportActionBar?.title = "Hotel"
+        mAuth = FirebaseAuth.getInstance()
+        val currentUser = mAuth.currentUser
+        val e = currentUser?.email.toString()
+        val show = e.replace("@olino.garden","")
+
+        supportActionBar?.title = "Kamar No $show"
         supportActionBar?.elevation = 0.0f
 
         btn_lihat_keranjng.setOnClickListener {
@@ -55,9 +63,12 @@ class MainActivity : AppCompatActivity() {
         when(item!!.itemId){
             R.id.history -> {
                 startActivity(Intent(this@MainActivity, HistoryPesananActivity::class.java))
+                //finish()
             }
             R.id.cara_pesan -> {
-                //startActivity(Intent(this@MainActivity, AdminMainActivity::class.java))
+                mAuth.signOut()
+                startActivity(Intent(this@MainActivity, ScanBarcodeActivity::class.java))
+                finish()
             }
         }
         return super.onOptionsItemSelected(item)

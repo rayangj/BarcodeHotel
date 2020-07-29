@@ -14,10 +14,12 @@ import androidx.fragment.app.FragmentStatePagerAdapter
 import com.example.barcodehotel.Admin.Fragment.ManageDrinkFragment
 import com.example.barcodehotel.Admin.Fragment.ManageFoodFragment
 import com.example.barcodehotel.R
+import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.activity_manage_data.*
 
 class ManageDataActivity : AppCompatActivity() {
 
+    private lateinit var mAuth : FirebaseAuth
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_manage_data)
@@ -25,6 +27,7 @@ class ManageDataActivity : AppCompatActivity() {
         supportActionBar?.title = "Manage Data"
         supportActionBar?.elevation = 0.0f
 
+        mAuth = FirebaseAuth.getInstance()
         val adapter = TabAdapterManage(supportFragmentManager, FragmentPagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT
         )
         viewPagerManage.adapter = adapter
@@ -56,12 +59,21 @@ class ManageDataActivity : AppCompatActivity() {
                 gotoTamahItem()
             }
             R.id.menu_logOut -> {
+
+                mAuth.signOut()
                 startActivity(Intent(this@ManageDataActivity, AdminMainActivity::class.java))
                 finish()
             }
         }
 
         return super.onOptionsItemSelected(item)
+    }
+
+    override fun onBackPressed() {
+        super.onBackPressed()
+        mAuth.signOut()
+        startActivity(Intent(this@ManageDataActivity, AdminMainActivity::class.java))
+        finish()
     }
      private fun gotoTamahItem(){
         val intent = Intent (this, Tambah_Makan::class.java)

@@ -1,5 +1,6 @@
 package com.example.barcodehotel
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
@@ -9,6 +10,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.barcodehotel.Adapter.KeranjangAdapter
 import com.example.barcodehotel.Model.KeranjangModel
 import com.example.barcodehotel.Model.PesananModel
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 import kotlinx.android.synthetic.main.activity_keranjang.*
 import java.text.SimpleDateFormat
@@ -19,20 +21,26 @@ class KeranjangActivity : AppCompatActivity() {
 
     lateinit var ref : DatabaseReference
     lateinit var listView: ArrayList<KeranjangModel>
+    lateinit var mAuth: FirebaseAuth
+    lateinit var show: String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_keranjang)
         title = "Keranjang"
 
-
         getData()
     }
     private fun getData(){
+        mAuth = FirebaseAuth.getInstance()
+        val currentUser = mAuth.currentUser
+        val e = currentUser?.email.toString()
+        show = e.replace("@olino.garden","")
+
         Toast.makeText(this, "Mengambil Data...", Toast.LENGTH_SHORT).show()
         ref = FirebaseDatabase.getInstance().getReference()
 
-        ref.child("Kamar").child("01").child("Keranjang").addValueEventListener(object : ValueEventListener {
+        ref.child("Kamar").child(show).child("Keranjang").addValueEventListener(object : ValueEventListener {
             override fun onCancelled(p0: DatabaseError) {
                 Toast.makeText(this@KeranjangActivity, "Data tidak tampil", Toast.LENGTH_SHORT).show()
             }
@@ -45,7 +53,7 @@ class KeranjangActivity : AppCompatActivity() {
                 var harga = ""
                 var jumlah = ""
                 var total = ""
-                val tanggal = SimpleDateFormat("EEE, dd MMM yyyy")
+                val tanggal = SimpleDateFormat("dd MMM yyyy")
                 val cTanggal = tanggal.format(Date())
                 val jam = SimpleDateFormat("HH:mm")
                 val cJam = jam.format(Date())
@@ -68,10 +76,16 @@ class KeranjangActivity : AppCompatActivity() {
                         jumlah = "$jumlah$jumleh-"
                         total = "$total$totel-"
 
+                        // status 0 = menuggu konfirmasi
+                        // status 1 = ditolak
+                        // status 2 = diterima
+
                         btn_pesan.setOnClickListener {
-                            val pesan = PesananModel(idpsn, nama, harga, jumlah, total,finalTotal, "$cTanggal $cJam")
-                            ref.child("Pesanan").child(cTanggal).child("Kamar").child("01").child(idpsn).setValue(pesan).addOnCompleteListener {
-                                Toast.makeText(this@KeranjangActivity, "Berhasil, Pesanan akan segera diantar", Toast.LENGTH_SHORT).show()
+                            val pesan = PesananModel(idpsn, nama, show,"0", jumlah, total,finalTotal,cTanggal,cJam)
+                            ref.child("Pesanan").child(cTanggal).child("Pesan").child(idpsn).setValue(pesan).addOnCompleteListener {
+                                val intent = Intent(this@KeranjangActivity, BerhasilPesanActivity::class.java)
+                                startActivity(intent)
+                                finish()
                             }
                          }
                     listView.add(teman!!)
@@ -87,12 +101,16 @@ class KeranjangActivity : AppCompatActivity() {
         return super.onCreateOptionsMenu(menu)
     }
 
+    override fun onBackPressed() {
+        super.onBackPressed()
+        finish()
+    }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when(item!!.itemId){
             R.id.delete_keranjang -> {
                 ref = FirebaseDatabase.getInstance().getReference()
-                ref.child("Kamar").child("01").child("Keranjang").removeValue().addOnCompleteListener {
+                ref.child("Kamar").child(show).child("Keranjang").removeValue().addOnCompleteListener {
                     Toast.makeText(this@KeranjangActivity, "Data Terhapus", Toast.LENGTH_SHORT).show()
                 }
             }

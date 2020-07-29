@@ -5,10 +5,13 @@
     android:layout_height="match_parent"
     tools:context=".Admin.Fragment.PesananBaruFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_pesanan_baru"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_margin="5dp"
+        tools:listitem="@layout/pesanan_baru_item">
+
+    </androidx.recyclerview.widget.RecyclerView>
 
 </FrameLayout>

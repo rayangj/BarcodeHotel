@@ -27,6 +27,11 @@
                     android:layout_alignParentLeft="true">
 
                     <TextView
+                        android:id="@+id/gone_idpsn"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:visibility="gone"/>
+                    <TextView
                         android:id="@+id/show_tanggal"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -34,14 +39,14 @@
                         android:layout_alignParentLeft="true"
                         android:textStyle="bold"
                         android:textColor="#000000"
-                        android:textSize="16sp"/>
+                        android:textSize="17sp"/>
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text=" | "
                         android:layout_alignParentLeft="true"
                         android:textColor="#000000"
-                        android:textSize="16sp"/>
+                        android:textSize="17sp"/>
                     <TextView
                         android:layout_alignParentRight="true"
                         android:id="@+id/show_jam"
@@ -50,16 +55,17 @@
                         android:text="Jam"
                         android:textStyle="italic"
                         android:textColor="#000000"
-                        android:textSize="16sp"/>
+                        android:textSize="17sp"/>
                 </LinearLayout>
 
                 <TextView
                     android:layout_alignParentRight="true"
-                    android:id="@+id/show_status"
+                    android:id="@+id/show_no_kamar"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Status"
-                    android:textColor="#FFEB3B"
+                    android:text="No Kamar"
+                    android:textStyle="bold"
+                    android:textColor="@color/colorPrimary"
                     android:textSize="17sp"/>
             </RelativeLayout>
 
@@ -133,6 +139,27 @@
                     android:layout_alignParentRight="true"
                     android:text="Rp. Total"/>
             </RelativeLayout>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:background="#000000" />
+            <LinearLayout
+                android:layout_marginTop="5dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:orientation="horizontal">
+                <Button
+                    android:id="@+id/txt_status"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="#ffffff"
+                    android:enabled="false"
+                    android:background="@color/colorPrimary"
+                    android:text="Diterima"/>
+            </LinearLayout>
         </LinearLayout>
 
     </androidx.cardview.widget.CardView>

@@ -10,7 +10,7 @@ import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
 import androidx.fragment.app.FragmentStatePagerAdapter
 import com.example.barcodehotel.Admin.Fragment.PesananBaruFragment
-import com.example.barcodehotel.Admin.Fragment.PesananHariIniFragment
+import com.example.barcodehotel.Admin.Fragment.SemuaPesananFragment
 import com.example.barcodehotel.R
 import kotlinx.android.synthetic.main.activity_admin_main.*
 
@@ -20,7 +20,7 @@ class AdminMainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_admin_main)
 
-        supportActionBar?.title = "Admin Hotel"
+        supportActionBar?.title = "Pesanan"
         supportActionBar?.elevation = 0.0f
 
         val adapter = TabAdapterAdmin(supportFragmentManager, FragmentPagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT
@@ -30,11 +30,11 @@ class AdminMainActivity : AppCompatActivity() {
         tabLayoutAdmin.setupWithViewPager(viewPagerAdmin)
     }
     class TabAdapterAdmin(fm: FragmentManager, behavior: Int) : FragmentStatePagerAdapter(fm, behavior){
-        private val tabName : Array<String> = arrayOf("Pesanan Baru", "Semua Pesanan")
+        private val tabName : Array<String> = arrayOf("Menunggu", "Ditanggapi")
 
         override fun getItem(position: Int): Fragment = when (position) {
             0 -> PesananBaruFragment()
-            1 -> PesananHariIniFragment()
+            1 -> SemuaPesananFragment()
             else -> PesananBaruFragment()
         }
 

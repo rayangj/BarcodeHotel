@@ -14,6 +14,7 @@ import com.bumptech.glide.Glide
 import com.example.barcodehotel.Model.FoodModel
 import com.example.barcodehotel.Model.KeranjangModel
 import com.example.barcodehotel.R
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.storage.FirebaseStorage
@@ -29,6 +30,7 @@ class KeranjangAdapter(private val context: Context, private val list: ArrayList
     lateinit var edt_jumlah : EditText
     lateinit var ref : DatabaseReference
     lateinit var storageRef: StorageReference
+    lateinit var mAuth: FirebaseAuth
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = ViewHolder(
         LayoutInflater.from(context).inflate(R.layout.keranjang_items, parent, false)
@@ -47,6 +49,11 @@ class KeranjangAdapter(private val context: Context, private val list: ArrayList
             val edt_jumlah = inflate_view.findViewById<EditText>(R.id.txt_ji)
             val btn_edit_jumlah = inflate_view.findViewById(R.id.btn_edit_jumlah_item) as Button
             val btn_hapus = inflate_view.findViewById(R.id.btn_hapus_item) as Button
+
+            mAuth = FirebaseAuth.getInstance()
+            val currentUser = mAuth.currentUser
+            val e = currentUser?.email.toString()
+            val show = e.replace("@olino.garden","")
 
             val old_jumlah = holder.jumlah_item.text.toString()
             edt_jumlah.setText(old_jumlah)
@@ -80,13 +87,13 @@ class KeranjangAdapter(private val context: Context, private val list: ArrayList
                     val total1 = total * jml
                     val finalTotal = total1.toString()
 
-                    ref.child("Kamar").child("01").child("Keranjang").child(idmkn).child("jumlah").setValue(new_jumlah).addOnCompleteListener {}
-                    ref.child("Kamar").child("01").child("Keranjang").child(idmkn).child("total").setValue(finalTotal).addOnCompleteListener {}
+                    ref.child("Kamar").child(show).child("Keranjang").child(idmkn).child("jumlah").setValue(new_jumlah).addOnCompleteListener {}
+                    ref.child("Kamar").child(show).child("Keranjang").child(idmkn).child("total").setValue(finalTotal).addOnCompleteListener {}
                     dialog.cancel()
                 }
             }
             btn_hapus.setOnClickListener {
-                ref.child("Kamar").child("01").child("Keranjang").child(idmkn).removeValue().addOnCompleteListener {}
+                ref.child("Kamar").child(show).child("Keranjang").child(idmkn).removeValue().addOnCompleteListener {}
                 dialog.cancel()
                 Toast.makeText(context, "dihapus dari keranjang" , Toast.LENGTH_SHORT).show()
             }

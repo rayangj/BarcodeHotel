@@ -52,12 +52,7 @@ class ManageFoodFragment : Fragment() {
 
                 listView= java.util.ArrayList<FoodModel>()
                 for (dataSnapshot in p0.children ) {
-//                   val key = dataSnapshot.getRef().toString()
-//                  btn_lihat_keranjng.setText("$key\n")
-
                     val teman = dataSnapshot.getValue(FoodModel::class.java)
-                    //val key = dataSnapshot.getKey()
-                    //teman?.key(dataSnapshot.key)
                     listView.add(teman!!)
                 }
                 rv_Food_manage.layoutManager = LinearLayoutManager(context)

@@ -13,7 +13,6 @@
             android:id="@+id/rv_View"
             android:layout_margin="5dp"
             tools:listitem="@layout/food_items">
-
         </androidx.recyclerview.widget.RecyclerView>
 <!--        <View-->
 <!--            android:layout_width="match_parent"-->

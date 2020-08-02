@@ -69,7 +69,8 @@ class KeranjangActivity : AppCompatActivity() {
                         val jumleh = teman.jumlah.toString()
                         val totel = teman.total.toString()
                         val finalTotal = subTotal.toString()
-                        btn_pesan.text = "Rp." + finalTotal + " - Pesan"
+//                        btn_pesan.text = "Rp." + finalTotal + " - Pesan"
+                        txtTotalPesan.text = "Rp." + finalTotal
 
                         nama = "$nama$name-"
                         harga = "$harga$harge-"
@@ -98,6 +99,7 @@ class KeranjangActivity : AppCompatActivity() {
     }
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.menu_keranjang, menu)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true);
         return super.onCreateOptionsMenu(menu)
     }
 

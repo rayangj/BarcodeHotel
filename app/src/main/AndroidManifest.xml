@@ -17,12 +17,14 @@
         <activity android:name=".BerhasilPesanActivity" />
         <activity android:name=".ScanBarcodeActivity">
             <intent-filter>
+
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".HistoryPesananActivity" />
+        <activity android:name=".HistoryPesananActivity"
+                  android:parentActivityName=".Admin.ManageDataActivity"/>
         <activity android:name=".Admin.EditItem" />
         <activity android:name=".Admin.ManageDataActivity" />
         <activity android:name=".Admin.AdminLogin" />
@@ -30,7 +32,8 @@
         <activity android:name=".Admin.AdminMainActivity" >
 
         </activity>
-        <activity android:name=".KeranjangActivity" />
+        <activity android:name=".KeranjangActivity"
+                  android:parentActivityName=".Admin.ManageDataActivity"/>
         <activity android:name=".MainActivity" />
         <activity android:name=".Fragment.Food_Fragment" />
         <activity android:name=".Fragment.Drink_Fragment" />

@@ -80,11 +80,11 @@ class Tambah_Makan : AppCompatActivity() {
                         storageRef.child(idmkn).downloadUrl.addOnSuccessListener {
                             val user = FoodModel(idmkn, getNama, getHarga, stok, getKat, it.toString())
                             ref.child(getKat).child(idmkn).setValue(user).addOnCompleteListener {}
-                         }
+                        }
                     }
-                    .addOnFailureListener {
-                        Toast.makeText(this@Tambah_Makan, it.message, Toast.LENGTH_SHORT).show()
-                    }
+                        .addOnFailureListener {
+                            Toast.makeText(this@Tambah_Makan, it.message, Toast.LENGTH_SHORT).show()
+                        }
 
                 }
             }

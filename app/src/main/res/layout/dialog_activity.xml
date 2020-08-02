@@ -12,6 +12,7 @@
         android:padding="10dp"
         android:layout_margin="10dp"
         android:inputType="number"
+        android:backgroundTint="#000"
         android:fontFamily="@font/montserrat_regular"/>
 
     <LinearLayout

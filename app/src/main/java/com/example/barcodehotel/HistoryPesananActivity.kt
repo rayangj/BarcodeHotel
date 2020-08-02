@@ -23,6 +23,7 @@ class HistoryPesananActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_history_pesanan)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true);
 
         title = "History Pesanan"
 

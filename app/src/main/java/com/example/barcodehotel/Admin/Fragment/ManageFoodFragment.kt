@@ -8,12 +8,14 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.barcodehotel.Adapter.FoodAdapter
 import com.example.barcodehotel.Admin.Adapter.AdminFoodAdapter
 import com.example.barcodehotel.Model.FoodModel
 
 import com.example.barcodehotel.R
 import com.google.firebase.database.*
 import kotlinx.android.synthetic.*
+import kotlinx.android.synthetic.main.fragment_food.*
 import kotlinx.android.synthetic.main.fragment_manage_food.*
 
 /**
@@ -48,15 +50,14 @@ class ManageFoodFragment : Fragment() {
                 Toast.makeText(getContext(), "Database Erorr njir", Toast.LENGTH_SHORT).show()
             }
             override fun onDataChange(p0: DataSnapshot) {
-
-
-                listView= java.util.ArrayList<FoodModel>()
+                listView = java.util.ArrayList<FoodModel>()
                 for (dataSnapshot in p0.children ) {
                     val teman = dataSnapshot.getValue(FoodModel::class.java)
                     listView.add(teman!!)
                 }
                 rv_Food_manage.layoutManager = LinearLayoutManager(context)
                 rv_Food_manage.adapter = AdminFoodAdapter(context!!,listView)
+                
             }
 
         })

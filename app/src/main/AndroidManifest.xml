@@ -24,7 +24,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".HistoryPesananActivity"
-                  android:parentActivityName=".Admin.ManageDataActivity"/>
+                  android:parentActivityName=".MainActivity"/>
         <activity android:name=".Admin.EditItem" />
         <activity android:name=".Admin.ManageDataActivity" />
         <activity android:name=".Admin.AdminLogin" />
@@ -33,7 +33,7 @@
 
         </activity>
         <activity android:name=".KeranjangActivity"
-                  android:parentActivityName=".Admin.ManageDataActivity"/>
+                  android:parentActivityName=".MainActivity"/>
         <activity android:name=".MainActivity" />
         <activity android:name=".Fragment.Food_Fragment" />
         <activity android:name=".Fragment.Drink_Fragment" />

@@ -16,12 +16,7 @@
         <activity android:name=".Admin.ShowPesananActivity"></activity>
         <activity android:name=".BerhasilPesanActivity" />
         <activity android:name=".ScanBarcodeActivity">
-            <intent-filter>
 
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity android:name=".HistoryPesananActivity"
                   android:parentActivityName=".MainActivity"/>
@@ -32,11 +27,17 @@
         <activity android:name=".Admin.AdminMainActivity" >
 
         </activity>
+        <activity android:name=".SplashScreenActivity" >
+            <intent-filter>
+
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity android:name=".KeranjangActivity"
                   android:parentActivityName=".MainActivity"/>
         <activity android:name=".MainActivity" />
-        <activity android:name=".Fragment.Food_Fragment" />
-        <activity android:name=".Fragment.Drink_Fragment" />
     </application>
 
 </manifest>

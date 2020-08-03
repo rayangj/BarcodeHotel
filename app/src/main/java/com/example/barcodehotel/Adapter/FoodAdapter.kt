@@ -17,6 +17,9 @@ import com.google.firebase.database.FirebaseDatabase
 import kotlinx.android.extensions.LayoutContainer
 import kotlinx.android.synthetic.main.food_items.*
 import kotlinx.android.synthetic.main.food_items.view.*
+import java.text.NumberFormat
+import java.util.*
+import kotlin.collections.ArrayList
 
 
 class FoodAdapter(private val context: Context, private val list: ArrayList<FoodModel>)
@@ -66,8 +69,8 @@ class FoodAdapter(private val context: Context, private val list: ArrayList<Food
     class ViewHolder(override val containerView: View):
         RecyclerView.ViewHolder(containerView), LayoutContainer {
         fun bindItem(list: FoodModel){
-            show_nama.text = list.nama
             show_harga.text = list.harga
+            show_nama.text = list.nama
             gone_gambar.text = list.gambar
             gone_id.text = list.id
             gone_stok.text = list.stok

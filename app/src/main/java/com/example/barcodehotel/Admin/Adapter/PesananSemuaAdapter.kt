@@ -69,7 +69,7 @@ class PesananSemuaAdapter (private val context: Context, private val list: Array
             val o = j.substring(0, j.length - 1)
 
             val namas = i.replace("-", "\n")
-            val hargas = p.replace("-", "\nRp.")
+            val hargas = p.replace("-", "\n")
             val jumlahs = o.replace("-", "\n x ")
 
             nama.text = namas

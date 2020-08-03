@@ -59,6 +59,8 @@ class AdminFoodAdapter (private val context: Context, private val list: ArrayLis
             alert.setItems(action){ dialog, which ->
                 when(which){
                     0 ->{
+
+
                         val pindah = Intent(context, EditItem::class.java)
 
                         val bundle = Bundle()
@@ -90,6 +92,7 @@ class AdminFoodAdapter (private val context: Context, private val list: ArrayLis
     class ViewHolder(override val containerView: View):
         RecyclerView.ViewHolder(containerView), LayoutContainer {
         fun bindItem(list: FoodModel){
+
             manage_nama.text = list.nama
             manage_harga.text = list.harga
             gone_gambar.text = list.gambar

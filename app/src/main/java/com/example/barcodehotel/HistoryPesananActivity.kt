@@ -1,8 +1,8 @@
 package com.example.barcodehotel
 
-import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.barcodehotel.Adapter.PesananAdapter
@@ -48,15 +48,24 @@ class HistoryPesananActivity : AppCompatActivity() {
             }
 
             override fun onDataChange(p0: DataSnapshot) {
-                listView= java.util.ArrayList<PesananModel>()
+                if(p0.exists()){
+                    listView= java.util.ArrayList<PesananModel>()
 
-                for (dataSnapshot in p0.children ) {
-                    val teman = dataSnapshot.getValue(PesananModel::class.java)
+                    for (dataSnapshot in p0.children ) {
+                        val teman = dataSnapshot.getValue(PesananModel::class.java)
 
-                    listView.add(teman!!)
+                        listView.add(teman!!)
+                    }
+                    rv_History_pesanan.layoutManager = LinearLayoutManager(this@HistoryPesananActivity)
+                    rv_History_pesanan.adapter = PesananAdapter(this@HistoryPesananActivity,listView)
                 }
-                rv_History_pesanan.layoutManager = LinearLayoutManager(this@HistoryPesananActivity)
-                rv_History_pesanan.adapter = PesananAdapter(this@HistoryPesananActivity,listView)
+                else{
+                    Toast.makeText(this@HistoryPesananActivity, "Data Kosong", Toast.LENGTH_SHORT).show()
+                    rv_History_pesanan.visibility = View.GONE
+
+                    hstr_kososng.visibility = View.VISIBLE
+                    txt_hstr_kosong.visibility = View.VISIBLE
+                }
             }
 
         })

@@ -7,6 +7,26 @@
     android:orientation="vertical"
     tools:context=".HistoryPesananActivity">
 
+    <ImageView
+        android:id="@+id/hstr_kososng"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_history_batal_24dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="200dp"
+        android:visibility="gone"
+        />
+    <TextView
+        android:id="@+id/txt_hstr_kosong"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="History Kosong"
+        app:fontFamily="@font/montserrat_light"
+        android:layout_gravity="center"
+        android:textSize="30sp"
+        android:visibility="gone"
+        android:layout_marginTop="15dp"
+        />
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_History_pesanan"
         android:layout_width="match_parent"

@@ -1,6 +1,7 @@
 package com.example.barcodehotel.Admin
 
 import android.app.Activity
+import android.app.AlertDialog
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -15,11 +16,17 @@ import com.example.barcodehotel.Admin.Fragment.ManageDrinkFragment
 import com.example.barcodehotel.Admin.Fragment.ManageFoodFragment
 import com.example.barcodehotel.R
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
 import kotlinx.android.synthetic.main.activity_manage_data.*
+import java.text.SimpleDateFormat
+import java.util.*
 
 class ManageDataActivity : AppCompatActivity() {
 
     private lateinit var mAuth : FirebaseAuth
+    private lateinit var ref : DatabaseReference
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_manage_data)
@@ -28,6 +35,8 @@ class ManageDataActivity : AppCompatActivity() {
         supportActionBar?.elevation = 0.0f
 
         mAuth = FirebaseAuth.getInstance()
+        ref = FirebaseDatabase.getInstance().getReference()
+
         val adapter = TabAdapterManage(supportFragmentManager, FragmentPagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT
         )
         viewPagerManage.adapter = adapter
@@ -57,6 +66,25 @@ class ManageDataActivity : AppCompatActivity() {
         when(item!!.itemId){
             R.id.menu_tambahItem -> {
                 gotoTamahItem()
+            }
+            R.id.menu_hapusDataUser ->{
+                val alert = AlertDialog.Builder(this@ManageDataActivity)
+                alert.setTitle("Data yang dihapus adalah : ")
+                alert.setMessage("\n- Data user login\n- Data pesanan user\n- Data keranjang user \n\nPastkan data sudah direkap sebelumnya")
+                alert.setCancelable(false)
+                alert.setPositiveButton("HAPUS"){_,_->
+                    val tanggal = SimpleDateFormat("dd MMM yyyy")
+                    val cTanggal = tanggal.format(Date())
+
+                    ref.child("Kamar").removeValue()
+                    ref.child("Pesanan").child(cTanggal).removeValue()
+                    ref.child("User").removeValue()
+
+                    Toast.makeText(this@ManageDataActivity, "Data Terhapus", Toast.LENGTH_SHORT).show()
+                }
+                alert.setNegativeButton("BATAL"){_,_-> }
+                val mdialog = alert.create()
+                mdialog.show()
             }
             R.id.menu_logOut -> {
 

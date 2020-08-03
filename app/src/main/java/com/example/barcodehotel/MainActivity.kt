@@ -9,7 +9,6 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT
 import androidx.fragment.app.FragmentStatePagerAdapter
-import com.example.barcodehotel.Admin.AdminMainActivity
 import com.example.barcodehotel.Fragment.Drink_Fragment
 import com.example.barcodehotel.Fragment.Food_Fragment
 import com.google.firebase.auth.FirebaseAuth
@@ -35,7 +34,6 @@ class MainActivity : AppCompatActivity() {
             val intent = Intent(this@MainActivity, KeranjangActivity::class.java)
             startActivity(intent)
         }
-
         val adapter = TabAdapter(supportFragmentManager, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT)
         viewPager.adapter = adapter
 
@@ -66,9 +64,9 @@ class MainActivity : AppCompatActivity() {
                 //finish()
             }
             R.id.cara_pesan -> {
-//                mAuth.signOut()
-//                startActivity(Intent(this@MainActivity, ScanBarcodeActivity::class.java))
-//                finish()
+                mAuth.signOut()
+                startActivity(Intent(this@MainActivity, ScanBarcodeActivity::class.java))
+                finish()
             }
         }
         return super.onOptionsItemSelected(item)

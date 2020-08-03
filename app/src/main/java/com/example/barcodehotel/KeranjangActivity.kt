@@ -1,10 +1,12 @@
 package com.example.barcodehotel
 
+import android.app.AlertDialog
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.barcodehotel.Adapter.KeranjangAdapter
@@ -13,6 +15,7 @@ import com.example.barcodehotel.Model.PesananModel
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 import kotlinx.android.synthetic.main.activity_keranjang.*
+import java.text.NumberFormat
 import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.ArrayList
@@ -46,55 +49,88 @@ class KeranjangActivity : AppCompatActivity() {
             }
 
             override fun onDataChange(p0: DataSnapshot) {
-                listView= java.util.ArrayList<KeranjangModel>()
-                var subTotal = 0
-                val idpsn = ref.push().key.toString()
-                var nama = ""
-                var harga = ""
-                var jumlah = ""
-                var total = ""
-                val tanggal = SimpleDateFormat("dd MMM yyyy")
-                val cTanggal = tanggal.format(Date())
-                val jam = SimpleDateFormat("HH:mm")
-                val cJam = jam.format(Date())
+                if(p0.exists()) {
+                listView = java.util.ArrayList<KeranjangModel>()
+                    var subTotal = 0
+                    val idpsn = ref.push().key.toString()
+                    var nama = ""
+                    var harga = ""
+                    var jumlah = ""
+                    var total = ""
+                    val tanggal = SimpleDateFormat("dd MMM yyyy")
+                    val cTanggal = tanggal.format(Date())
+                    val jam = SimpleDateFormat("HH:mm")
+                    val cJam = jam.format(Date())
 
-                for (dataSnapshot in p0.children ) {
-                    val teman = dataSnapshot.getValue(KeranjangModel::class.java)
-                        val totalItem = teman?.total!!.toInt()
-                        val jml = Integer.valueOf(totalItem)
+                    for (dataSnapshot in p0.children) {
+                        val teman = dataSnapshot.getValue(KeranjangModel::class.java)
+                        val totalItem = teman?.total!!.toString()
+                        val jmlitem = totalItem.replace("Rp","")
+                        val jmlitem2 = jmlitem.replace(".","")
+
+                        val jml = jmlitem2.toInt()
                         subTotal = subTotal + jml
 
-                        val name = teman.nama.toString()
-                        val harge = teman.harga.toString()
-                        val jumleh = teman.jumlah.toString()
-                        val totel = teman.total.toString()
-                        val finalTotal = subTotal.toString()
-//                        btn_pesan.text = "Rp." + finalTotal + " - Pesan"
-                        txtTotalPesan.text = "Rp." + finalTotal
+                        val name = teman.nama
+                        val harge = teman.harga
+                        val jumleh = teman.jumlah
+                        val totel = teman.total
+//
+//
+                        val localeID = Locale("in","ID")
+                        val numberFormat = NumberFormat.getCurrencyInstance(localeID)
+                        val hargamkn = numberFormat.format(subTotal.toDouble()).toString()
 
+                        btn_pesan.text = hargamkn + " - Pesan"
+//
                         nama = "$nama$name-"
                         harga = "$harga$harge-"
                         jumlah = "$jumlah$jumleh-"
                         total = "$total$totel-"
 
+//
                         // status 0 = menuggu konfirmasi
                         // status 1 = ditolak
                         // status 2 = diterima
-
+//
                         btn_pesan.setOnClickListener {
-                            val pesan = PesananModel(idpsn, nama, show,"0", jumlah, total,finalTotal,cTanggal,cJam)
-                            ref.child("Pesanan").child(cTanggal).child("Pesan").child(idpsn).setValue(pesan).addOnCompleteListener {
-                                val intent = Intent(this@KeranjangActivity, BerhasilPesanActivity::class.java)
-                                startActivity(intent)
-                                finish()
+                            val alert = AlertDialog.Builder(this@KeranjangActivity)
+                            alert.setTitle("Konfirmasi Pesanan")
+                            alert.setMessage("Pesanan yang sudah diterima tidak bisa dibatalkan")
+                            alert.setCancelable(false)
+                            alert.setPositiveButton("YA"){_,_->
+                                val pesan = PesananModel(idpsn, nama, show, "0", jumlah, total, hargamkn, cTanggal, cJam)
+                                ref.child("Pesanan").child(cTanggal).child("Pesan").child(idpsn)
+                                    .setValue(pesan).addOnCompleteListener {
+                                        val intent = Intent(
+                                            this@KeranjangActivity,
+                                            BerhasilPesanActivity::class.java
+                                        )
+                                        startActivity(intent)
+                                        finish()
+                                    }
                             }
-                         }
-                    listView.add(teman!!)
-                }
-                rv_View_keranjang.layoutManager = LinearLayoutManager(this@KeranjangActivity)
-                rv_View_keranjang.adapter = KeranjangAdapter(this@KeranjangActivity,listView)
-            }
+                            alert.setNegativeButton("BATAL"){_,_-> }
+                            val mdialog = alert.create()
+                            mdialog.show()
 
+
+                        }
+                        listView.add(teman!!)
+                    }
+                    rv_View_keranjang.layoutManager = LinearLayoutManager(this@KeranjangActivity)
+                    rv_View_keranjang.adapter = KeranjangAdapter(this@KeranjangActivity, listView)
+                }
+                else{
+                    Toast.makeText(this@KeranjangActivity, "Data Kosong", Toast.LENGTH_SHORT).show()
+                    rv_View_keranjang.visibility = View.GONE
+                    btn_pesan.visibility = View.GONE
+
+                    krjng_kososng.visibility = View.VISIBLE
+                    txt_krjng_kosong.visibility = View.VISIBLE
+
+                }
+            }
         })
     }
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -113,7 +149,7 @@ class KeranjangActivity : AppCompatActivity() {
             R.id.delete_keranjang -> {
                 ref = FirebaseDatabase.getInstance().getReference()
                 ref.child("Kamar").child(show).child("Keranjang").removeValue().addOnCompleteListener {
-                    Toast.makeText(this@KeranjangActivity, "Data Terhapus", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this@KeranjangActivity, "Keranjang Kosong", Toast.LENGTH_SHORT).show()
                 }
             }
         }

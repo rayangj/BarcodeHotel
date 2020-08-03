@@ -23,6 +23,9 @@ import kotlinx.android.extensions.LayoutContainer
 import kotlinx.android.synthetic.main.keranjang_items.*
 import kotlinx.android.synthetic.main.keranjang_items.view.*
 import java.lang.Double
+import java.text.NumberFormat
+import java.util.*
+import kotlin.collections.ArrayList
 
 class KeranjangAdapter(private val context: Context, private val list: ArrayList<KeranjangModel>)
     : RecyclerView.Adapter<KeranjangAdapter.ViewHolder>(){
@@ -72,7 +75,8 @@ class KeranjangAdapter(private val context: Context, private val list: ArrayList
             btn_edit_jumlah.setOnClickListener {
                 val new_jumlah = edt_jumlah.text.toString()
                 val harga1 = holder.gone_harga.text.toString()
-
+                val hargas1 = harga1.replace("Rp", "")
+                val hargas2 = hargas1.replace(".","")
 
                 if(new_jumlah == ""){
                     Toast.makeText(context, "kolom tidak boleh kosong" , Toast.LENGTH_SHORT).show()
@@ -82,13 +86,17 @@ class KeranjangAdapter(private val context: Context, private val list: ArrayList
 
                 }
                 else{
-                    val total = harga1.toBigDecimal()
+                    val total = hargas2.toBigDecimal()
                     val jml = new_jumlah.toBigDecimal()
                     val total1 = total * jml
                     val finalTotal = total1.toString()
 
+                    val localeID = Locale("in","ID")
+                    val numberFormat = NumberFormat.getCurrencyInstance(localeID)
+                    val tootall = numberFormat.format(finalTotal.toDouble()).toString()
+                    
                     ref.child("Kamar").child(show).child("Keranjang").child(idmkn).child("jumlah").setValue(new_jumlah).addOnCompleteListener {}
-                    ref.child("Kamar").child(show).child("Keranjang").child(idmkn).child("total").setValue(finalTotal).addOnCompleteListener {}
+                    ref.child("Kamar").child(show).child("Keranjang").child(idmkn).child("total").setValue(tootall).addOnCompleteListener {}
                     dialog.cancel()
                 }
             }

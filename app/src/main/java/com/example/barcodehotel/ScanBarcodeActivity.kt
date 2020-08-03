@@ -10,8 +10,7 @@ import android.view.View
 import android.widget.Toast
 import com.example.barcodehotel.Model.ProfilModel
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.database.DatabaseReference
-import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.*
 import com.google.zxing.Result
 import kotlinx.android.synthetic.main.activity_scan_barcode.*
 import me.dm7.barcodescanner.core.IViewFinder
@@ -33,18 +32,8 @@ class ScanBarcodeActivity : AppCompatActivity(), ZXingScannerView.ResultHandler 
 
         refAuth = FirebaseAuth.getInstance()
         ref = FirebaseDatabase.getInstance().getReference()
+
         initScannerView()
-
-        //get email kamar
-//        val currentUser = refAuth.currentUser
-//        val e = currentUser?.email
-
-        if(refAuth.getCurrentUser() != null){
-            val intent = Intent(this@ScanBarcodeActivity, MainActivity::class.java)
-            startActivity(intent)
-            finish()
-        }
-        else{ }
     }
 
     private fun initScannerView(){
@@ -94,20 +83,21 @@ class ScanBarcodeActivity : AppCompatActivity(), ZXingScannerView.ResultHandler 
         val empass = p0?.text.toString()
         val pisah = empass?.replace("@olino.garden","")
 
-        val iduser = ref.push().key.toString()
+        val iduser = pisah
         if(pisah == empass){
             Toast.makeText(this@ScanBarcodeActivity, "Gagal membaca data, Hubungi CS", Toast.LENGTH_SHORT).show()
         }
         else{
-            Toast.makeText(this@ScanBarcodeActivity, "Memproses...", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this@ScanBarcodeActivity, "Mohon Tunggu", Toast.LENGTH_LONG).show()
             refAuth.createUserWithEmailAndPassword(empass,empass)
                 .addOnCompleteListener { task ->
                 if(task.isSuccessful){
-                    val profile = ProfilModel(iduser,empass,empass)
-                    ref.child("User").child(iduser).setValue(profile).addOnCompleteListener {}
                     val intent = Intent(this@ScanBarcodeActivity, MainActivity::class.java)
                     startActivity(intent)
                     finish()
+                    val profile = ProfilModel(iduser,empass,empass)
+                    ref.child("User").child(iduser).setValue(profile).addOnCompleteListener {}
+
                 }
             }
         }

@@ -50,15 +50,6 @@
                     android:orientation="horizontal"
                     android:layout_marginTop="7dp">
                     <TextView
-                        android:id="@+id/show_idr"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Rp."
-                        android:textSize="12sp"
-                        android:textColor="#000000"
-                        android:fontFamily="@font/montserrat_regular">
-                    </TextView>
-                    <TextView
                         android:id="@+id/keranjang_total"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"

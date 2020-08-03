@@ -13,6 +13,8 @@ import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
 import kotlinx.android.synthetic.main.activity_tambah_makan.*
+import java.text.NumberFormat
+import java.util.*
 
 class Tambah_Makan : AppCompatActivity() {
 
@@ -61,6 +63,10 @@ class Tambah_Makan : AppCompatActivity() {
         val getNama: String = txt_makanan?.getText().toString()
         val getHarga: String = txt_harga?.getText().toString()
 
+        val localeID = Locale("in","ID")
+        val numberFormat = NumberFormat.getCurrencyInstance(localeID)
+        val hargamkn = numberFormat.format(getHarga.toDouble()).toString()
+
         val idmkn = ref.push().key.toString()
 //
         val radio: RadioButton = findViewById(getStok)
@@ -78,7 +84,7 @@ class Tambah_Makan : AppCompatActivity() {
                     Toast.makeText(this@Tambah_Makan, "Mengupload...", Toast.LENGTH_LONG).show()
                     storageRef.child(idmkn).putFile(imgPath!!).addOnSuccessListener {
                         storageRef.child(idmkn).downloadUrl.addOnSuccessListener {
-                            val user = FoodModel(idmkn, getNama, getHarga, stok, getKat, it.toString())
+                            val user = FoodModel(idmkn, getNama, hargamkn, stok, getKat, it.toString())
                             ref.child(getKat).child(idmkn).setValue(user).addOnCompleteListener {}
                         }
                     }

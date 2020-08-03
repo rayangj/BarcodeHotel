@@ -50,7 +50,8 @@ class PesananBaruAdapter (private val context: Context, private val list: ArrayL
             show_no_kamar.text = list.nokamar
             show_tanggal.text = list.tanggal
             show_jam.text = list.jam
-            total.text = "Rp." + list.finalTotal
+            total.text = list.finalTotal
+
             val n = list.nama
             val h = list.total
             val j = list.jumlah
@@ -60,11 +61,11 @@ class PesananBaruAdapter (private val context: Context, private val list: ArrayL
             val o = j.substring(0, j.length - 1)
 
             val namas = i.replace("-", "\n")
-            val hargas = p.replace("-", "\nRp.")
+            val hargas = p.replace("-", "\n")
             val jumlahs = o.replace("-", "\n x ")
 
             nama.text = namas
-            harga.text = "Rp." + hargas
+            harga.text = hargas
             jumlah.text = " x " + jumlahs
 
         }

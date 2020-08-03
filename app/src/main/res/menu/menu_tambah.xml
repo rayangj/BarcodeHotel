@@ -6,6 +6,10 @@
         android:title="Tambah Item"
         />
     <item
+        android:id="@+id/menu_hapusDataUser"
+        android:title="Hapus Data Hari Ini"
+        />
+    <item
         android:id="@+id/menu_logOut"
         android:title="Log Out"
         />

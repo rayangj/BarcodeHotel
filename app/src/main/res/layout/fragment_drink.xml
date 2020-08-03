@@ -5,13 +5,26 @@
     android:layout_height="match_parent"
     tools:context=".Fragment.Drink_Fragment">
 
-    <!-- TODO: Update blank fragment layout -->
     <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/rv_View"
         android:layout_margin="5dp"
+        android:paddingBottom="80dp"
+        android:clipToPadding="false"
         tools:listitem="@layout/food_items"
         />
-
+<!--    <Button-->
+<!--        android:id="@+id/btn_lihat_keranjng"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_gravity="center|bottom"-->
+<!--        android:background="@drawable/btn_rounded"-->
+<!--        android:drawableLeft="@drawable/ic_cart"-->
+<!--        android:drawablePadding="7dp"-->
+<!--        android:fontFamily="@font/montserrat_medium"-->
+<!--        android:padding="15dp"-->
+<!--        android:layout_marginBottom="20dp"-->
+<!--        android:text="Lihat Keranjang"-->
+<!--        android:textColor="#ffffff" />-->
 </FrameLayout>

@@ -33,6 +33,9 @@ class ScanBarcodeActivity : AppCompatActivity(), ZXingScannerView.ResultHandler 
         refAuth = FirebaseAuth.getInstance()
         ref = FirebaseDatabase.getInstance().getReference()
 
+        refAuth.currentUser?.delete()
+        refAuth.signOut()
+        
         initScannerView()
     }
 

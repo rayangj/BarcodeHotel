@@ -48,7 +48,7 @@ class KeranjangAdapter(private val context: Context, private val list: ArrayList
         ref = FirebaseDatabase.getInstance().getReference()
 
         holder.btn_edit.setOnClickListener {
-            val inflate_view = LayoutInflater.from(context).inflate(R.layout.dialog_activity, null)
+            val inflate_view = LayoutInflater.from(context).inflate(R.layout.activity_admin_login, null)
             val edt_jumlah = inflate_view.findViewById<EditText>(R.id.txt_ji)
             val btn_edit_jumlah = inflate_view.findViewById(R.id.btn_edit_jumlah_item) as Button
             val btn_hapus = inflate_view.findViewById(R.id.btn_hapus_item) as Button
@@ -68,6 +68,7 @@ class KeranjangAdapter(private val context: Context, private val list: ArrayList
             alertDialog.setTitle(title_bjor)
             alertDialog.setView(inflate_view)
             alertDialog.setCancelable(true)
+
 
             val dialog = alertDialog.create()
             dialog.show()

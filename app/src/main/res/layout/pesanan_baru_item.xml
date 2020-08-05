@@ -54,7 +54,6 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Jam"
-                        android:textStyle="italic"
                         android:textColor="#000000"
                         android:textSize="17sp"/>
                 </LinearLayout>
@@ -75,7 +74,7 @@
                 android:layout_height="1dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="10dp"
-                android:background="#000000" />
+                android:background="#8A8989" />
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
@@ -117,7 +116,7 @@
                 android:layout_height="1dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="10dp"
-                android:background="#000000" />
+                android:background="#8A8989" />
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
@@ -145,7 +144,7 @@
                 android:layout_height="1dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="10dp"
-                android:background="#000000" />
+                android:background="#8A8989" />
             <LinearLayout
                 android:layout_marginTop="5dp"
                 android:layout_width="match_parent"
@@ -160,7 +159,7 @@
                     android:layout_weight="1"
                     android:textColor="#ffffff"
                     android:layout_marginRight="2.5dp"
-                    android:background="#E2E41E1E"
+                    android:background="@drawable/btn_stock_gone"
                     android:text="Tolak"/>
                 <Button
                     android:id="@+id/btn_konfirm"
@@ -168,7 +167,7 @@
                     android:layout_weight="1"
                     android:textColor="#ffffff"
                     android:layout_marginLeft="2.5dp"
-                    android:background="@color/colorPrimary"
+                    android:background="@drawable/btn_stock_available"
                     android:layout_height="wrap_content"
                     android:text="Konfirmasi"/>
             </LinearLayout>

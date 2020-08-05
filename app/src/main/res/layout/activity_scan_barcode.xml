@@ -11,7 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/txt_view"
-        android:text="PASTIKAN SCAN DITEMPAT YANG TERANG"
+        android:text="Scan QR Code, di Tempat Yang Terang"
         android:textSize="15sp"
         android:textColor="@color/backgroundProfile"
         android:layout_margin="10dp"

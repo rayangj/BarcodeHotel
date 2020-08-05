@@ -8,35 +8,49 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/logo_hotell"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@drawable/logo_hotell"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Admin.ShowPesananActivity"></activity>
+        <activity android:name=".DetailItemActivity"></activity>
+        <activity
+            android:name=".Admin.ShowPesananActivity"
+            android:parentActivityName=".Admin.ManageDataActivity" />
         <activity android:name=".BerhasilPesanActivity" />
-        <activity android:name=".ScanBarcodeActivity">
-
+        <activity android:name=".ScanBarcodeActivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar">
         </activity>
-        <activity android:name=".HistoryPesananActivity"
-                  android:parentActivityName=".MainActivity"/>
-        <activity android:name=".Admin.EditItem" />
+        <activity
+            android:name=".HistoryPesananActivity"
+            android:parentActivityName=".MainActivity" />
+        <activity
+            android:name=".Admin.EditItem"
+            android:parentActivityName=".Admin.ManageDataActivity" />
         <activity android:name=".Admin.ManageDataActivity" />
         <activity android:name=".Admin.AdminLogin" />
-        <activity android:name=".Admin.Tambah_Makan" />
-        <activity android:name=".Admin.AdminMainActivity" >
-
+        <activity
+            android:name=".Admin.Tambah_Makan"
+            android:parentActivityName=".Admin.ManageDataActivity" />
+        <activity android:name=".Admin.AdminMainActivity">
+<!--             <intent-filter>-->
+<!--             <action android:name="android.intent.action.MAIN" />-->
+<!--                 -->
+<!--             <category android:name="android.intent.category.LAUNCHER" />-->
+<!--             </intent-filter>-->
         </activity>
-        <activity android:name=".SplashScreenActivity" >
+        <activity
+            android:name=".SplashScreenActivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar">
             <intent-filter>
-
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".KeranjangActivity"
-                  android:parentActivityName=".MainActivity"/>
+        <activity
+            android:name=".KeranjangActivity"
+            android:parentActivityName=".MainActivity" />
         <activity android:name=".MainActivity" />
     </application>
 

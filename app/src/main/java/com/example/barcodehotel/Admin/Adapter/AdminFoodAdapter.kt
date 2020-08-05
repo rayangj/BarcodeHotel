@@ -103,10 +103,11 @@ class AdminFoodAdapter (private val context: Context, private val list: ArrayLis
             Glide.with(itemView.context).load(list.gambar).into(itemView.show_gambar_manage)
 
             if(stok == "Tersedia"){
-                set_stok.setBackgroundColor(Color.parseColor("#FF4BD649"))
+                set_stok.setBackgroundResource(R.drawable.btn_stock_available)
             }
             else{
-                set_stok.setBackgroundColor(Color.parseColor("#D64949"))
+//                set_stok.setBackgroundColor(Color.parseColor("#D64949"))
+                set_stok.setBackgroundResource(R.drawable.btn_stock_gone)
             }
 
         }

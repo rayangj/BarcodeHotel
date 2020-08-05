@@ -144,7 +144,7 @@
                 android:text="Batalkan pesanan"
                 android:textColor="#ffffff"
                 android:visibility="gone"
-                android:background="#BD1A1A"
+                android:background="@drawable/btn_stock_gone"
                 android:layout_marginTop="15dp"/>
 
         </LinearLayout>

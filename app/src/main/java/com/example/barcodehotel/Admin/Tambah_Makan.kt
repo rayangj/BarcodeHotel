@@ -30,6 +30,7 @@ class Tambah_Makan : AppCompatActivity() {
 
         supportActionBar?.title = "Tambah Item"
         supportActionBar?.elevation = 0.0f
+        supportActionBar?.setDisplayHomeAsUpEnabled(true);
 
         storageRef = FirebaseStorage.getInstance().getReference("Gambar")
         ref = FirebaseDatabase.getInstance().getReference()

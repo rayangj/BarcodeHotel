@@ -22,6 +22,7 @@ class ShowPesananActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_show_pesanan)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true);
 
         bundle = intent.extras
         val id_item = bundle!!.getCharSequence("id_item").toString()

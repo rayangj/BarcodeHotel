@@ -3,6 +3,7 @@ package com.example.barcodehotel.Admin
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import android.widget.Toast
 import com.example.barcodehotel.R
 import com.google.firebase.auth.FirebaseAuth
@@ -23,6 +24,7 @@ class AdminLogin : AppCompatActivity() {
         btn_masuk.setOnClickListener {
             loginEmailPassword()
         }
+
 
     }
     private fun loginEmailPassword() {

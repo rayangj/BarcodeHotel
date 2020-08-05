@@ -23,7 +23,7 @@
         android:text="History Kosong"
         app:fontFamily="@font/montserrat_light"
         android:layout_gravity="center"
-        android:textSize="30sp"
+        android:textSize="20sp"
         android:visibility="gone"
         android:layout_marginTop="15dp"
         />

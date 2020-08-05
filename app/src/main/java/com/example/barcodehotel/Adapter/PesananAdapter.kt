@@ -1,11 +1,14 @@
 package com.example.barcodehotel.Adapter
 
+import android.app.AlertDialog
 import android.content.Context
+import android.content.Intent
 import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.example.barcodehotel.BerhasilPesanActivity
 import com.example.barcodehotel.Model.PesananModel
 import com.example.barcodehotel.R
 import com.google.firebase.database.DatabaseReference
@@ -40,7 +43,16 @@ class PesananAdapter (private val context: Context, private val list: ArrayList<
         if(sta == "Menunggu Konfirmasi"){
             holder.btn_batal_psn.visibility = View.VISIBLE
             holder.btn_batal_psn.setOnClickListener {
-                ref.child("Pesanan").child(cTanggal).child("Pesan").child(holder.gone_id.text.toString()).removeValue()
+                val alert = AlertDialog.Builder(context)
+                alert.setTitle("Batalkan Pesanan")
+                alert.setMessage("Apakah anda yakin ingin membatalkan pesanan")
+                alert.setCancelable(false)
+                alert.setPositiveButton("YA"){_,_->
+                    ref.child("Pesanan").child(cTanggal).child("Pesan").child(holder.gone_id.text.toString()).removeValue()
+                }
+                alert.setNegativeButton("BATAL"){_,_-> }
+                val mdialog = alert.create()
+                mdialog.show()
             }
         }
 

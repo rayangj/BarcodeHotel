@@ -6,39 +6,51 @@
     android:layout_height="match_parent"
     android:layout_margin="10dp"
     android:orientation="vertical"
-    tools:context=".Admin.AdminLogin">
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="LOGIN ADMIN"
-        android:layout_gravity="center"
-        android:textSize="20sp"
-        android:layout_marginLeft="15dp"
-        android:layout_marginRight="15dp"
-        android:layout_marginTop="15dp"
-        android:layout_marginBottom="20dp"
-        android:textStyle="bold"/>
-    <EditText
-        android:id="@+id/edt_email"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Masukkan Email"
-        android:inputType="textEmailAddress"
-        android:layout_margin="10dp"
-        android:textColorHighlight="@color/colorPrimaryDark"/>
-    <EditText
-        android:id="@+id/edt_pass"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Masukkan Password"
-        android:inputType="textPassword"
-        android:layout_margin="10dp"/>
-    <Button
-        android:id="@+id/btn_masuk"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Masuk"
-        android:layout_margin="10dp"/>
+    tools:context=".Admin.AdminLogin"
+    android:padding="40dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="X"
+            android:layout_gravity="right"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:textColor="#000000"
+            android:id="@+id/btn_close"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="LOGIN ADMIN"
+            android:layout_gravity="center"
+            android:textSize="20sp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginBottom="20dp"
+            android:textStyle="bold"
+            android:textColor="#000000"/>
+        <EditText
+            android:id="@+id/edt_email"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Masukkan Email"
+            android:inputType="textEmailAddress"
+            android:layout_margin="10dp"
+            android:textColorHighlight="@color/colorPrimaryDark"/>
+        <EditText
+            android:id="@+id/edt_pass"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Masukkan Password"
+            android:inputType="textPassword"
+            android:layout_margin="10dp"/>
+        <Button
+            android:id="@+id/btn_masuk"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Masuk"
+            android:background="@drawable/btn_rounded_small"
+            android:layout_margin="10dp"
+            android:textColor="#FFFFFF"/>
 
 </LinearLayout>

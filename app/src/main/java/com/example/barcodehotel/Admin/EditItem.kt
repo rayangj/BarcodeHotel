@@ -29,13 +29,14 @@ class EditItem : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_edit_item)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true);
 
 
 
         ref = FirebaseDatabase.getInstance().getReference()
 
         bundle = intent.extras
-        title = bundle!!.getCharSequence("nama_item")
+        title = "Edit Item"
         val upload_gambar = findViewById<Button>(R.id.btn_upload) as Button
         val btn_edit_item = findViewById<Button>(R.id.btn_edit_item) as Button
         val nama = findViewById<EditText>(R.id.txt_makanan) as EditText

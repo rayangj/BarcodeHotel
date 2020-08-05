@@ -147,13 +147,22 @@ class KeranjangActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when(item!!.itemId){
             R.id.delete_keranjang -> {
-                ref = FirebaseDatabase.getInstance().getReference()
-                ref.child("Kamar").child(show).child("Keranjang").removeValue().addOnCompleteListener {
-                    Toast.makeText(this@KeranjangActivity, "Keranjang Kosong", Toast.LENGTH_SHORT).show()
+                val alert = AlertDialog.Builder(this@KeranjangActivity)
+                alert.setTitle("Hapus Data")
+                alert.setMessage("Apakah anda yakin ingin menghapus pesanan dari keranjang?")
+                alert.setCancelable(false)
+                alert.setPositiveButton("YA"){_,_->
+                    ref = FirebaseDatabase.getInstance().getReference()
+                    ref.child("Kamar").child(show).child("Keranjang").removeValue().addOnCompleteListener {
+                        Toast.makeText(this@KeranjangActivity, "Keranjang Kosong", Toast.LENGTH_SHORT).show()
+                        }
+                }
+                alert.setNegativeButton("BATAL"){_,_-> }
+                val mdialog = alert.create()
+                mdialog.show()
+
                 }
             }
-        }
-
         return super.onOptionsItemSelected(item)
     }
 }

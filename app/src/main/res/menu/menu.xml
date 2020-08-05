@@ -8,8 +8,8 @@
         android:icon="@drawable/ic_baseline_history_24"
         app:showAsAction="always"/>
 
-    <item
-        android:id="@+id/cara_pesan"
-        android:title="Cara Pesan"/>
+<!--    <item-->
+<!--        android:id="@+id/cara_pesan"-->
+<!--        android:title="Cara Pesan"/>-->
 
 </menu>

@@ -15,6 +15,8 @@ import com.google.zxing.Result
 import kotlinx.android.synthetic.main.activity_scan_barcode.*
 import me.dm7.barcodescanner.core.IViewFinder
 import me.dm7.barcodescanner.zxing.ZXingScannerView
+import java.text.SimpleDateFormat
+import java.util.*
 import java.util.jar.Manifest
 
 class ScanBarcodeActivity : AppCompatActivity(), ZXingScannerView.ResultHandler {
@@ -98,11 +100,14 @@ class ScanBarcodeActivity : AppCompatActivity(), ZXingScannerView.ResultHandler 
                     val intent = Intent(this@ScanBarcodeActivity, MainActivity::class.java)
                     startActivity(intent)
                     finish()
-                    val profile = ProfilModel(iduser,empass,empass)
+                    val tanggal = SimpleDateFormat("dd MMM yyyy")
+                    val cTanggal = tanggal.format(Date())
+                    val profile = ProfilModel(iduser,empass,empass,cTanggal)
                     ref.child("User").child(iduser).setValue(profile).addOnCompleteListener {}
 
                 }
             }
         }
     }
+
 }

@@ -31,8 +31,6 @@ class EditItem : AppCompatActivity() {
         setContentView(R.layout.activity_edit_item)
         supportActionBar?.setDisplayHomeAsUpEnabled(true);
 
-
-
         ref = FirebaseDatabase.getInstance().getReference()
 
         bundle = intent.extras

@@ -38,9 +38,6 @@ class MainActivity : AppCompatActivity() {
     private lateinit var mAuth : FirebaseAuth
     private lateinit var ref : DatabaseReference
     lateinit var listView: ArrayList<ProfilModel>
-//    private val REQUEST_CODE = 100
-//    private lateinit var alarmManager: AlarmManager
-//    private lateinit var pendingIntent: PendingIntent
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -54,24 +51,6 @@ class MainActivity : AppCompatActivity() {
         supportActionBar?.title = "Kamar No $show"
         supportActionBar?.elevation = 0.0f
 
-        autoLogout()
-
-//        alarmManager = getSystemService(Context.ALARM_SERVICE) as AlarmManager
-//        val intent = Intent(this, MyAlarmReceiver::class.java)
-//        pendingIntent = PendingIntent.getBroadcast(this, REQUEST_CODE, intent, PendingIntent.FLAG_UPDATE_CURRENT)
-//
-//        val calendar = Calendar.getInstance()
-//        calendar.timeInMillis = System.currentTimeMillis()
-//        calendar.set(Calendar.HOUR_OF_DAY, 15)
-//        calendar.set(Calendar.MINUTE, 3)
-//
-//        alarmManager.setRepeating(
-//            AlarmManager.RTC,
-//            calendar.timeInMillis,
-//            AlarmManager.INTERVAL_DAY,
-//            pendingIntent
-//        )
-
         btn_lihat_keranjng.setOnClickListener {
             val intent = Intent(this@MainActivity, KeranjangActivity::class.java)
             startActivity(intent)
@@ -80,37 +59,6 @@ class MainActivity : AppCompatActivity() {
         viewPager.adapter = adapter
 
         tabLayout.setupWithViewPager(viewPager)
-    }
-
-    private fun autoLogout(){
-        ref = FirebaseDatabase.getInstance().getReference()
-        val currentUser = mAuth.currentUser
-        val tanggal = SimpleDateFormat("dd MMM yyyy")
-        val cTanggal = tanggal.format(Date())
-        Toast.makeText(this@MainActivity, "halo" + cTanggal, Toast.LENGTH_SHORT).show()
-        Log.d("tanggal", cTanggal)
-
-            fun onDataChange(p0: DataSnapshot) {
-                    val teman = p0.getValue(ProfilModel::class.java)
-                    val tanggalLogin = teman?.tanggal.toString()
-                    Log.d("dicho", tanggalLogin)
-                    Toast.makeText(this@MainActivity, "halooooo" + cTanggal, Toast.LENGTH_SHORT).show()
-                    if (tanggalLogin != cTanggal) {
-                        currentUser?.delete()
-                        ref.child("User").removeValue()
-                        mAuth.signOut()
-                        startActivity(Intent(this@MainActivity, ScanBarcodeActivity::class.java))
-                        finish()
-
-                    }
-            }
-//        if (cJam == "22:55:00"){
-//            currentUser?.delete()
-//            ref.child("User").removeValue()
-//            mAuth.signOut()
-//            startActivity(Intent(this@MainActivity, ScanBarcodeActivity::class.java))
-//            finish()
-//        }
     }
 
     class TabAdapter(fm: FragmentManager, behavior: Int) : FragmentStatePagerAdapter(fm, behavior){
@@ -136,19 +84,10 @@ class MainActivity : AppCompatActivity() {
                 startActivity(Intent(this@MainActivity, HistoryPesananActivity::class.java))
                 //finish()
             }
-//            R.id.cara_pesan -> {
-//                mAuth.signOut()
-//                startActivity(Intent(this@MainActivity, ScanBarcodeActivity::class.java))
-//                finish()
-//            }
         }
         return super.onOptionsItemSelected(item)
     }
 
-//    override fun onDestroy() {
-//        super.onDestroy()
-//        alarmManager.cancel(pendingIntent)
-//    }
 
     
 }
